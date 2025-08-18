@@ -13,4 +13,16 @@ test.describe('Homepage Component', () => {
     await expect(logo).toBeVisible();
   });
 
+  test('Sedekahje Header and Subheader are present', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForTimeout(2000); // wait 2 seconds
+    await expect(page.getByText('Senarai QR masjid, surau, dan institusi.')).toBeVisible();
+  });
+
+  test('Sedekahjer Institute Button are Present', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForTimeout(2000); // wait 2 seconds
+    
+  });
+
 });
