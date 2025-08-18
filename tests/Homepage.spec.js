@@ -19,10 +19,25 @@ test.describe('Homepage Component', () => {
     await expect(page.getByText('Senarai QR masjid, surau, dan institusi.')).toBeVisible();
   });
 
-  test('Sedekahjer Institute Button are Present', async ({ page }) => {
+  test('Sedekahjer Institutes Button are Present', async ({ page }) => {
     await page.goto('/');
     await page.waitForTimeout(2000); // wait 2 seconds
     
+ // Define categories to test
+  const categories = [
+    { name: 'Masjid', iconAlt: 'Masjid' },
+    { name: 'Surau', iconAlt: 'Surau' },
+    { name: 'Lain-lain', iconAlt: 'Lain-lain' }
+  ];
+
+  for (const { name, iconAlt } of categories) {
+    const button = page.locator(`button:has-text("${name}")`);
+    const icon = page.locator(`img[alt="${iconAlt}"][width="24"][height="24"]`);
+
+    await expect(button, `${name} button should be visible`).toBeVisible();
+    await expect(icon, `${name} icon should be visible`).toBeVisible();
+  }
+
   });
 
 });
