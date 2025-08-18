@@ -77,5 +77,13 @@ export default defineConfig({
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+
+  
 });
 
+// playwright.config.js
+module.exports = {
+  use: {
+    baseURL: 'https://sedekah.je',
+  },
+};
