@@ -1,10 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Homepage Component', () => {
-    test('Homepage is Present', async ({ page }) => {
+  test('Homepage is Present', async ({ page }) => {
     await page.goto('/'); // baseURL is already set
     await expect(page).toHaveTitle(/Sedekah Je/); 
   });
+
+      // Need to add modals interaction
 
   test('Sedekahje Logo is Visible', async ({ page }) => {
     await page.goto('/');
@@ -40,4 +42,14 @@ test.describe('Homepage Component', () => {
 
   });
 
+  test('Negeri Dropdown are present', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForTimeout(2000); 
+    
+ // Define categories to test
+    const negeriDropdown = page.locator('button:has-text("Semua Negeri")');
+    await expect(negeriDropdown).toBeVisible();
+    await page.waitForTimeout(2000); 
+    await negeriDropdown.click();
+  });
 });
