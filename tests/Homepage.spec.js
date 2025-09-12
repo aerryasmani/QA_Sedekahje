@@ -44,10 +44,13 @@ test.describe('Homepage Component', () => {
 
   test('Negeri Dropdown are present', async ({ page }) => {
     await page.goto('/');
+    const PopUpModal = page.locator('//*[@id="radix-:Rikq:"]/div[3]/button');
+    const negeriDropdown = page.locator('button:has-text("Semua Negeri")');
     await page.waitForTimeout(2000); 
+    await expect(PopUpModal).toBeVisible(); 
+    await PopUpModal.click();
     
  // Define categories to test
-    const negeriDropdown = page.locator('button:has-text("Semua Negeri")');
     await expect(negeriDropdown).toBeVisible();
     await page.waitForTimeout(2000); 
     await negeriDropdown.click();
