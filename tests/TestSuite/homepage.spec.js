@@ -5,16 +5,46 @@ const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
 
 //------- Helper Function for URL ------//
 
+async function VerifyModalPopup (page) {
+  const ModalDialogLocator = page.locator('div[role="dialog"]');
+  await expect(ModalDialogLocator).toBeVisible({ timeout: 10000 });
+
+  const ModalTitleText = ModalDialogLocator.locator('h2');
+  await expect(ModalTitleText).toHaveText('Berita Gembira!');
+
+  const ModalContentLocator = [
+  'Selamat datang ke SedekahJe. Kini anda boleh menyumbang QR kod!',
+  'Kami dengan sukacitanya mengumumkan bahawa anda kini boleh log masuk untuk menyumbang QR kod ke dalam direktori SedekahJe.',
+  'Dengan menyumbang, anda membantu masyarakat Malaysia untuk mencari dan menggunakan QR kod derma dengan lebih mudah.',
+  'Mulakan sumbangan anda hari ini dan bantu kami mengembangkan direktori QR kod yang lebih komprehensif untuk semua!'
+  ]
+
+  await expect(page.locator('div[role="dialog"] p')).toHaveCount(4); 
+
+  for (const text of ModalContentLocator) {
+    await expect(page.getByText(text)).toBeVisible();
+  }
+
+  const Button = page.getByRole('button',{name:'Faham, Terima Kasih!'});
+  await expect(Button).toBeVisible();
+  await Button.click();
+
+  await expect(ModalDialogLocator).toBeHidden();
+}
+
+
 async function VerifyPageTitle (page) {
   await expect(page).toHaveTitle(PageTitle);
 }
 
 async function VerifyLogoVisibility (page) {
 
-const LogoLocator = page.locator('img[alt="Masjid"]');
+const LogoLocator = page.getByRole('img', { name: 'Masjid' }).first();
+await expect(LogoLocator).toBeVisible();
+
 
 // ✅ Check visibility
-await expect(LogoLocator).toBeVisible({ timeout: 10000 });
+await expect(LogoLocator).toBeVisible();
 
 // ✅ Check attributes
 await expect(LogoLocator).toHaveAttribute('alt', 'Masjid');
@@ -23,8 +53,8 @@ await expect(LogoLocator).toHaveAttribute('width', '100');
 await expect(LogoLocator).toHaveAttribute('height', '100');
 await expect(LogoLocator).toHaveAttribute('loading', 'lazy');
 
-
 }
+
 
 // Setup
 test.beforeEach(async ({ page }) => {
@@ -34,12 +64,15 @@ test.beforeEach(async ({ page }) => {
 
 //------- Test Cases ------//
 
+test('CF-001 | Pop up | Notification Modal is present and visible', async ({ page }) => {
+  await VerifyModalPopup(page);
+});
+
 test('CF-001 | Homepage | Title displays correctly on page load', async ({ page }) => {
   await VerifyPageTitle(page);
 });
 
-
 test('CF-002 | Homepage | Should display logo correctly on page load', async ({ page }) => {
+  await VerifyModalPopup(page);
   await VerifyLogoVisibility(page);
-
 });
