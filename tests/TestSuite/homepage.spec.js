@@ -68,11 +68,32 @@ test('CF-001 | Pop up | Notification Modal is present and visible', async ({ pag
   await VerifyModalPopup(page);
 });
 
-test('CF-001 | Homepage | Title displays correctly on page load', async ({ page }) => {
+test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
   await VerifyPageTitle(page);
 });
 
-test('CF-002 | Homepage | Should display logo correctly on page load', async ({ page }) => {
+test('CF-003 | Homepage | Should display logo correctly on page load', async ({ page }) => {
   await VerifyModalPopup(page);
   await VerifyLogoVisibility(page);
+});
+
+test('CF-004 | Homepage | Mode toogle display correctly on page load', async ({ page }) => {
+});
+
+test('CF-005 | Homepage | Mosque button display correctly on page load', async ({ page }) => {
+});
+
+test('CF-006 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
+});
+
+test('CF-007 | Homepage | Institusi button display and working correctly on page load', async ({ page }) => {
+});
+
+test('CF-008 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
+});
+
+test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
+});
+
+test('CF-010 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
 });
