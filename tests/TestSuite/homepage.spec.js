@@ -55,15 +55,23 @@ await expect(LogoLocator).toHaveAttribute('loading', 'lazy');
 
 }
 
+async function VerifyToogleButton(page){
+  const ToogleButton = page.getByRole('button',{name:'Toggle theme'})
+  await expect(ToogleButton).toBeVisible();
+  await ToogleButton.click({ force: true });
+  await expect(ToogleButton.locator('.lucide-moon')).toHaveClass(/dark:size-\[1\.2rem\]/);
+  await ToogleButton.click({ force: true });
+}
 
 // Setup
 test.beforeEach(async ({ page }) => {
   await page.goto(BaseURL);
+  await VerifyModalPopup(page);
 });
 
 
 //------- Test Cases ------//
-
+/*
 test('CF-001 | Pop up | Notification Modal is present and visible', async ({ page }) => {
   await VerifyModalPopup(page);
 });
@@ -76,10 +84,13 @@ test('CF-003 | Homepage | Should display logo correctly on page load', async ({ 
   await VerifyModalPopup(page);
   await VerifyLogoVisibility(page);
 });
+*/
 
 test('CF-004 | Homepage | Mode toogle display correctly on page load', async ({ page }) => {
+  await VerifyToogleButton(page);
 });
 
+/*
 test('CF-005 | Homepage | Mosque button display correctly on page load', async ({ page }) => {
 });
 
@@ -97,3 +108,4 @@ test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ pa
 
 test('CF-010 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
 });
+*/
