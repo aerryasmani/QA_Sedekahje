@@ -118,7 +118,8 @@ async function VerifyDropdown(page){
     await expect(page.getByText(FilterText)).toBeVisible();
 
     await page.goto(BaseURL);
-    await page.waitForTimeout(5000);
+    await page.waitForURL(BaseURL)
+    await dropdownBtn.click();
   }
 
 }
