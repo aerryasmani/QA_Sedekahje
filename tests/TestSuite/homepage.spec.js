@@ -63,6 +63,65 @@ async function VerifyToogleButton(page){
   await ToogleButton.click({ force: true });
 }
 
+async function VerifyOrgButton(page){
+  //const OrgBtn = page.getByRole('button',{Btn_Name});
+
+  //Verify button label is present and visible
+  const BtnLabel = ['Masjid','Surau','Lain-lain'];
+  for(const label of BtnLabel){
+    const btn = page.getByRole('button',{name:label});
+    await expect(btn).toBeVisible();
+  }
+
+  //Verify button is functional
+  for(const ButtonFilter of BtnLabel){
+    const btn = page.getByRole('button', { name: ButtonFilter });
+    const FilterText = 'Jumlah hasil tapisan';
+    const LogoLocator = page.getByRole('img', { name: ButtonFilter }).first();
+
+    await btn.click();
+    await expect(page.getByText(FilterText)).toBeVisible();
+    await page.waitForTimeout(5000);
+    await page.goto(BaseURL);
+  }
+
+}
+
+async function VerifyDropdown(page){
+  //Verify dropdown is present
+  const dropdownBtn = page.getByRole('combobox');
+  await expect(dropdownBtn).toBeVisible(({ timeout: 10000 }));
+  await expect(dropdownBtn).toContainText('Semua Negeri');
+  await dropdownBtn.click(page);
+
+
+  //Verify dropdown label is present and visible
+  const dropdownoptions = ['Johor','Kedah','Kelantan','Melaka','Negeri Sembilan','Pahang'
+    ,'Perak','Perlis','Pulau Pinang','Sabah','Sarawak','Selangor','Terengganu',
+    'W.P. Kuala Lumpur','W.P. Labuan','W.P. Putrajaya'
+  ];
+
+  for(const label of dropdownoptions){
+    const option = page.getByText(label, { exact: true });
+
+    // Scroll option into view before checking visibility
+    await option.scrollIntoViewIfNeeded();  
+    await expect(option).toBeVisible({ timeout: 3000 });
+  }
+
+  //Verify button is functional
+  for(const ButtonFilter of dropdownoptions){
+    const btn = page.getByText(ButtonFilter, { exact: true });
+    const FilterText = 'Jumlah hasil tapisan';
+
+    await btn.click();
+    await expect(page.getByText(FilterText)).toBeVisible();
+
+    await page.goto(BaseURL);
+    await page.waitForTimeout(5000);
+  }
+
+}
 // Setup
 test.beforeEach(async ({ page }) => {
   await page.goto(BaseURL);
@@ -84,25 +143,24 @@ test('CF-003 | Homepage | Should display logo correctly on page load', async ({ 
   await VerifyModalPopup(page);
   await VerifyLogoVisibility(page);
 });
-*/
+
 
 test('CF-004 | Homepage | Mode toogle display correctly on page load', async ({ page }) => {
   await VerifyToogleButton(page);
 });
 
+test('CF-005 | Homepage | Institution Buttons display and function correctly on page load', async ({ page }) => {
+  await VerifyOrgButton(page);
+});
+*/
+
+
+test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
+  await VerifyDropdown(page)
+});
+
+
 /*
-test('CF-005 | Homepage | Mosque button display correctly on page load', async ({ page }) => {
-});
-
-test('CF-006 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
-});
-
-test('CF-007 | Homepage | Institusi button display and working correctly on page load', async ({ page }) => {
-});
-
-test('CF-008 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
-});
-
 test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
 });
 
