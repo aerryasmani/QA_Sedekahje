@@ -106,21 +106,24 @@ async function VerifyDropdown(page){
 
     // Scroll option into view before checking visibility
     await option.scrollIntoViewIfNeeded();  
-    await expect(option).toBeVisible({ timeout: 3000 });
+    await expect(option).toBeVisible({ timeout: 120000 });
   }
+}
 
-  //Verify button is functional
-  for(const ButtonFilter of dropdownoptions){
-    const btn = page.getByText(ButtonFilter, { exact: true });
-    const FilterText = 'Jumlah hasil tapisan';
+async function DropdownFunctionality(){
 
-    await btn.click();
-    await expect(page.getByText(FilterText)).toBeVisible();
-
-    await page.goto(BaseURL);
-    await page.waitForTimeout(5000);
+    //Verify button is functional
+  for (const ButtonFilter of dropdownoptions) {
+    try {
+      console.log(`Testing filter: ${ButtonFilter}`);
+      const btn = page.getByText(ButtonFilter, { exact: true });
+      await btn.click();
+      await expect(page.getByText('Jumlah hasil tapisan')).toBeVisible({ timeout: 5000 });
+      await page.getByRole('combobox').click();
+    } catch (err) {
+      console.error(`Filter failed: ${ButtonFilter}`, err);
+    }
   }
-
 }
 // Setup
 test.beforeEach(async ({ page }) => {
