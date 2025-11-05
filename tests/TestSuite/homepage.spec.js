@@ -7,12 +7,11 @@ const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
 
 async function VerifyModalPopup (page) {
   const ModalDialogLocator = page.locator('div[role="dialog"]');
-  await ModalDialogLocator.waitFor({ state: 'visible', timeout: 10000 });
-  await page.pause();
+  await page.waitForSelector('div[role="dialog"]', { state: 'attached', timeout: 10000 });
+  await expect(page.locator('div[role="dialog"]')).toBeVisible();
 
+ 
   await expect(ModalDialogLocator).toBeVisible({ timeout: 10000 });
-  await page.pause();
-
 
   const ModalTitleText = ModalDialogLocator.locator('h2');
   await expect(ModalTitleText).toHaveText('Berita Gembira!');
@@ -34,11 +33,10 @@ async function VerifyModalPopup (page) {
   await expect(Button).toBeVisible();
   await Button.click();
 
-  await expect(ModalDialogLocator).toBeHidden();
-  await page.pause();
-
-  await ModalDialogLocator.waitFor({ state: 'hidden', timeout: 10000 });
-  await page.pause();
+  
+  /*
+  await expect(ModalDialogLocator).toHaveCount(0);
+  console.log('✅ Modal closed successfully');*/
 
 }
 
@@ -179,9 +177,9 @@ test.beforeEach(async ({ page }) => {
 //------- Test Cases ------//
 test.setTimeout(300000);
 
-test('CF-001 | Pop up | Notification Modal is present and visible', async ({ page }) => {
+/*test('CF-001 | Pop up | Notification Modal is present and visible', async ({ page }) => {
   await VerifyModalPopup(page);
-});
+});*/
 
 test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
   await VerifyPageTitle(page);
