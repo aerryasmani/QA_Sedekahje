@@ -7,7 +7,12 @@ const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
 
 async function VerifyModalPopup (page) {
   const ModalDialogLocator = page.locator('div[role="dialog"]');
+  await ModalDialogLocator.waitFor({ state: 'visible', timeout: 10000 });
+  await page.pause();
+
   await expect(ModalDialogLocator).toBeVisible({ timeout: 10000 });
+  await page.pause();
+
 
   const ModalTitleText = ModalDialogLocator.locator('h2');
   await expect(ModalTitleText).toHaveText('Berita Gembira!');
@@ -30,6 +35,11 @@ async function VerifyModalPopup (page) {
   await Button.click();
 
   await expect(ModalDialogLocator).toBeHidden();
+  await page.pause();
+
+  await ModalDialogLocator.waitFor({ state: 'hidden', timeout: 10000 });
+  await page.pause();
+
 }
 
 
@@ -110,21 +120,55 @@ async function VerifyDropdown(page){
   }
 }
 
-async function DropdownFunctionality(){
+async function DropdownFunctionality(page, baseURL){
+  const dropdownBtn = page.getByRole('combobox');
+  
+  const dropdownOptions = [
+    'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan', 'Pahang',
+    'Perak', 'Perlis', 'Pulau Pinang', 'Sabah', 'Sarawak', 'Selangor', 'W.P. Kuala Lumpur', 'W.P. Labuan', 'W.P. Putrajaya'
+  ];
 
-    //Verify button is functional
-  for (const ButtonFilter of dropdownoptions) {
-    try {
-      console.log(`Testing filter: ${ButtonFilter}`);
-      const btn = page.getByText(ButtonFilter, { exact: true });
-      await btn.click();
-      await expect(page.getByText('Jumlah hasil tapisan')).toBeVisible({ timeout: 5000 });
-      await page.getByRole('combobox').click();
-    } catch (err) {
-      console.error(`Filter failed: ${ButtonFilter}`, err);
+  console.log('Testing filtering functionality for each option...');
+  
+  for(const label of dropdownOptions){
+    console.log(`Testing filter for: ${label}`);
+
+    // Scroll down if we reached "Pulau Pinang"
+    if (label === 'Terengganu') {
+      await page.mouse.wheel(0, 300); // Scroll down 300 pixels
+      await page.waitForTimeout(300);
     }
+    
+    // Click the option
+    const option = page.getByText(label, { exact: true });
+    await option.scrollIntoViewIfNeeded();
+    await option.click();
+    
+    // Wait for dropdown to close and filtering to apply
+    await page.waitForTimeout(1000);
+    
+    // Check if 'Jumlah Hasil Tapisan' text is present (filtering works)
+    const filterResultText = page.getByText('Jumlah Hasil Tapisan');
+    await expect(filterResultText).toBeVisible({ timeout: 10000 });
+
+    // Go back to base URL
+    await page.goto(BaseURL);
+    
+       // Open dropdown
+    await dropdownBtn.click();
+
+    // Wait for 5 seconds
+    await page.waitForTimeout(5000);
+
+    await option.scrollIntoViewIfNeeded();
+    
+
   }
+  
+  console.log('✓ All filtering tests completed successfully');
 }
+
+
 // Setup
 test.beforeEach(async ({ page }) => {
   await page.goto(BaseURL);
@@ -133,7 +177,8 @@ test.beforeEach(async ({ page }) => {
 
 
 //------- Test Cases ------//
-/*
+test.setTimeout(300000);
+
 test('CF-001 | Pop up | Notification Modal is present and visible', async ({ page }) => {
   await VerifyModalPopup(page);
 });
@@ -143,7 +188,6 @@ test('CF-002 | Homepage | Title displays correctly on page load', async ({ page 
 });
 
 test('CF-003 | Homepage | Should display logo correctly on page load', async ({ page }) => {
-  await VerifyModalPopup(page);
   await VerifyLogoVisibility(page);
 });
 
@@ -155,11 +199,12 @@ test('CF-004 | Homepage | Mode toogle display correctly on page load', async ({ 
 test('CF-005 | Homepage | Institution Buttons display and function correctly on page load', async ({ page }) => {
   await VerifyOrgButton(page);
 });
-*/
 
 
 test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
-  await VerifyDropdown(page)
+  await VerifyDropdown(page);
+  await DropdownFunctionality(page)
+
 });
 
 
