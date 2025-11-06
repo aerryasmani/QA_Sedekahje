@@ -160,16 +160,37 @@ async function DropdownFunctionality(page, baseURL){
 }
 
 async function VerifySearchbar(page){
- const Searchbar = page.getByRole('searchbox');
+ const Searchbar = page.locator('input[type="search"][placeholder*="Cari masjid"]');
  await expect(Searchbar).toBeVisible();
  await expect(Searchbar).toHaveAttribute('placeholder', 'Cari masjid/surau/institusi...');
 
- Searchbar.click();
- //await page.getByRole('Searchbar').fill('Masjid Taman Pulai Indah');
- await expect(Searchbar).toHaveText('Masjid Taman Pulai Indah')
- 
+ await Searchbar.click();
+ await Searchbar.fill('Masjid Taman Pulai Indah');
+ await expect(Searchbar).toHaveValue('Masjid Taman Pulai Indah');
+}
+
+async function VerifySearchbar_Result(page){
+ const resultCard = page.locator('.rounded-lg.bg-card.text-card-foreground');
+ await expect(resultCard).toBeVisible();
+ await expect(page.getByText('Masjid Taman Pulai Indah')).toBeVisible();
+}
+
+async function VerifySurauButton(page){
+ const btnSurau = page.getByRole('button', { name: 'Surau' })
+ await expect(btnSurau).toBeVisible();
+ await btnSurau.click()
+
+ const filterResultText = page.getByText('Jumlah Hasil Tapisan');
+ await expect(filterResultText).toBeVisible();
+}
+
+async function VerifySurauButton_Result(page){
+ const resultCard_Surau = page.locator('h3.text-lg.font-semibold');
+ await expect(resultCard_Surau).toBeVisible();
+ await expect(page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
 
 }
+
 
 // Setup
 test.beforeEach(async ({ page }) => {
@@ -213,10 +234,10 @@ test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ pag
 
 test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
   await VerifySearchbar(page);
+  await VerifySearchbar_Result(page);
 });
 
-
-/*
 test('CF-010 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
+  await VerifySurauButton(page);
+  await VerifySurauButton_Result(page);
 });
-*/
