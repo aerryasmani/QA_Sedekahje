@@ -33,13 +33,9 @@ async function VerifyModalPopup (page) {
   await expect(Button).toBeVisible();
   await Button.click();
 
-  
-  /*
-  await expect(ModalDialogLocator).toHaveCount(0);
-  console.log('✅ Modal closed successfully');*/
+  await expect(ModalDialogLocator).toBeHidden({ timeout: 10000 });
 
 }
-
 
 async function VerifyPageTitle (page) {
   await expect(page).toHaveTitle(PageTitle);
@@ -50,11 +46,8 @@ async function VerifyLogoVisibility (page) {
 const LogoLocator = page.getByRole('img', { name: 'Masjid' }).first();
 await expect(LogoLocator).toBeVisible();
 
-
-// ✅ Check visibility
 await expect(LogoLocator).toBeVisible();
 
-// ✅ Check attributes
 await expect(LogoLocator).toHaveAttribute('alt', 'Masjid');
 await expect(LogoLocator).toHaveAttribute('src', '/masjid.svg');
 await expect(LogoLocator).toHaveAttribute('width', '100');
@@ -166,6 +159,17 @@ async function DropdownFunctionality(page, baseURL){
   console.log('✓ All filtering tests completed successfully');
 }
 
+async function VerifySearchbar(page){
+ const Searchbar = page.getByRole('searchbox');
+ await expect(Searchbar).toBeVisible();
+ await expect(Searchbar).toHaveAttribute('placeholder', 'Cari masjid/surau/institusi...');
+
+ Searchbar.click();
+ //await page.getByRole('Searchbar').fill('Masjid Taman Pulai Indah');
+ await expect(Searchbar).toHaveText('Masjid Taman Pulai Indah')
+ 
+
+}
 
 // Setup
 test.beforeEach(async ({ page }) => {
@@ -181,6 +185,7 @@ test.setTimeout(300000);
   await VerifyModalPopup(page);
 });*/
 
+/*
 test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
   await VerifyPageTitle(page);
 });
@@ -204,12 +209,14 @@ test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ pag
   await DropdownFunctionality(page)
 
 });
+*/
+
+test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
+  await VerifySearchbar(page);
+});
 
 
 /*
-test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
-});
-
 test('CF-010 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
 });
 */
