@@ -184,10 +184,23 @@ async function VerifySurauButton(page){
  await expect(filterResultText).toBeVisible();
 }
 
-async function VerifySurauButton_Result(page){
- const resultCard_Surau = page.locator('h3.text-lg.font-semibold');
+async function VerifyCard_Result(page){
+ const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();;
  await expect(resultCard_Surau).toBeVisible();
+
+ const cardLogo = resultCard_Surau.getByRole('img', { name: 'category logo' });
+ await expect(cardLogo).toBeVisible();
+
+ const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');
  await expect(page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
+
+ await page.mouse.wheel(0, 1000);
+
+ const DownloadButton = resultCard_Surau.locator('button', { has: page.locator('svg.lucide-download') });
+ await expect(DownloadButton).toBeVisible();
+
+ const ShareButton = resultCard_Surau.locator('button', { has: page.locator('svg.lucide-share2') });
+ await expect(ShareButton).toBeVisible();
 
 }
 
@@ -239,5 +252,5 @@ test('CF-009 | Homepage | Searchbar display correctly on page load', async ({ pa
 
 test('CF-010 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
   await VerifySurauButton(page);
-  await VerifySurauButton_Result(page);
+  await VerifyCard_Result(page);
 });
