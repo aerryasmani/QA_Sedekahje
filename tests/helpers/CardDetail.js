@@ -16,7 +16,7 @@ export async function VerifySurauButton(page){
 }
 
 export async function VerifyCard_Result(page){
- const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();;
+ const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();
  await expect(resultCard_Surau).toBeVisible();
 
  const cardLogo = resultCard_Surau.getByRole('img', { name: 'category logo' });
@@ -35,3 +35,15 @@ export async function VerifyCard_Result(page){
 
 }
 
+
+export async function VerifyCard_PetaButton(page){
+  const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();
+  const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');
+  await expect(page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
+  await resultCard_Surau.click();
+
+  const PetaButton = page.getByRole('button',{name:'Peta'});
+  await expect(PetaButton).toBeVisible();
+  await PetaButton.click();
+
+}
