@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton} from '../../helpers/CardDetail';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result} from '../../helpers/CardDetail';
 import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result} from '../../helpers/homepage';
 
 const BaseURL = 'https://sedekah.je/';
@@ -20,4 +20,5 @@ test ('CF - 012 | Detail Page | Peta buttonpxn is present and visible',async({pa
   await VerifySurauButton(page);
   await VerifyCard_Result(page);
   await VerifyCard_PetaButton(page);
+  await VerifyPetaButton_Result(page);
 });

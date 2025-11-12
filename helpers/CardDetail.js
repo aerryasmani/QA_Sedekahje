@@ -52,3 +52,12 @@ export async function VerifyCard_PetaButton(page){
   await expect(PetaButton).toBeVisible();
   await PetaButton.click();
 }
+
+export async function VerifyPetaButton_Result(page){
+  const PetaButton = page.getByRole('button',{name:'Peta'});
+  await expect(PetaButton).toBeVisible();
+  await PetaButton.click();
+
+  const mapContainer = page.locator('div.leaflet-container');
+  await expect(mapContainer).toBeVisible();
+}
