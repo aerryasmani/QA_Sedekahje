@@ -1,5 +1,6 @@
-import { expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
+
 
 
 export async function VerifyPageTitle (page) {
@@ -35,15 +36,19 @@ export async function VerifyCard_Result(page){
 
 }
 
-
 export async function VerifyCard_PetaButton(page){
   const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();
-  const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');
+  //const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');
+  const CardExpand= page.locator(".grid > div").first()
+  
   await expect(page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
-  await page.getByText('AJK Surau Darul IstiqamahKuching, SarawakKongsi').click()
+  // Target the outermost div with all card styling
+  await CardExpand.click(page);
+  await page.getByText('AJK Surau Darul IstiqamahKuching, SarawakKongsi').click();
+
+  await expect(resultCard_Surau).toHaveText('AJK Surau Darul IstiqamahKuching, SarawakKongsi')
 
   const PetaButton = page.getByRole('button',{name:'Peta'});
   await expect(PetaButton).toBeVisible();
   await PetaButton.click();
-
 }

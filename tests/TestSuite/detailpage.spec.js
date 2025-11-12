@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton} from '../helpers/CardDetail';
-import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result} from '../helpers/homepage';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton} from '../../helpers/CardDetail';
+import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result} from '../../helpers/homepage';
 
 const BaseURL = 'https://sedekah.je/';
 const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
