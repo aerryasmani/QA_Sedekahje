@@ -61,3 +61,8 @@ export async function VerifyPetaButton_Result(page){
   const mapContainer = page.locator('div.leaflet-container');
   await expect(mapContainer).toBeVisible();
 }
+
+export async function VerifyCard_GetDoa(page) {
+  
+  
+}

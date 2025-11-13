@@ -22,3 +22,11 @@ test ('CF - 012 | Detail Page | Peta buttonpxn is present and visible',async({pa
   await VerifyCard_PetaButton(page);
   await VerifyPetaButton_Result(page);
 });
+
+test ('CF - 013| Detail Page| Hadis Section is present',async ({page}) => {
+  await VerifySurauButton(page);
+  await VerifyCard_Result(page);
+  await VerifyCard_PetaButton(page);
+  
+
+});
