@@ -64,5 +64,7 @@ export async function VerifyPetaButton_Result(page){
 
 export async function VerifyCard_GetDoa(page) {
   
+  const GetDoa_Card = page.getByText(('Doa Harian'))
+  await expect(GetDoa_Card).toBeVisible(page);
   
 }

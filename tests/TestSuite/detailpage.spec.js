@@ -27,6 +27,6 @@ test ('CF - 013| Detail Page| Hadis Section is present',async ({page}) => {
   await VerifySurauButton(page);
   await VerifyCard_Result(page);
   await VerifyCard_PetaButton(page);
-  
+  await VerifyCard_GetDoa(page);
 
 });
