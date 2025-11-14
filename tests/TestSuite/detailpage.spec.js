@@ -23,7 +23,7 @@ test ('CF - 012 | Detail Page | Peta buttonpxn is present and visible',async({pa
   await VerifyPetaButton_Result(page);
 });
 
-test ('CF - 013| Detail Page| Hadis Section is present',async ({page}) => {
+test ('CF - 013| Detail Page| Doa Section is present',async ({page}) => {
   await VerifySurauButton(page);
   await VerifyCard_Result(page);
   await VerifyCard_PetaButton(page);

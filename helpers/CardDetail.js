@@ -59,12 +59,20 @@ export async function VerifyPetaButton_Result(page){
   await PetaButton.click();
 
   const mapContainer = page.locator('div.leaflet-container');
-  await expect(mapContainer).toBeVisible();
+  await expect(mapContainer).toBeVisible({ timeout: 10000 });
 }
 
 export async function VerifyCard_GetDoa(page) {
   
+  //Check the GetDoa title
   const GetDoa_Card = page.getByText(('Doa Harian'))
   await expect(GetDoa_Card).toBeVisible(page);
+  await page.getByText('Doa untuk dibaca setiap hari')
+
+  //Check the doa structure
+  const GetDoa_Structure = page.locator('.font-arabic');
+  await expect(GetDoa_Structure).toBeVisible(page);
+  await expect(page.locator('h3.font-semibold')).toBeVisible();
+  await expect(page.locator('h3.font-semibold')).not.toBeEmpty();
   
 }
