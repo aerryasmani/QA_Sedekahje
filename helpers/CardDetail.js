@@ -86,5 +86,16 @@ export async function VerifyCard_GetDoa(page) {
   await expect(GetDoa_HadisDescription).toBeVisible();
   await expect(GetDoa_HadisDescription).not.toBeEmpty();
 
+  await expect (page.getByText('Dikuasakan oleh')).toBeVisible();
   
+  // Check link
+  const getDoaLink = page.getByRole('link', { name: 'GetDoa' });
+  await expect(getDoaLink).toBeVisible().first().toBeVisible();
+  await expect(getDoaLink).toHaveAttribute('href', 'https://getdoa.com');
+  await expect(getDoaLink).toHaveAttribute('target', '_blank');
+  
+  // Check external link icon exists
+  const externalIcon = getDoaLink.locator('svg.lucide-external-link');
+  await expect(externalIcon).toBeVisible();
+
 }
