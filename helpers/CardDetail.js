@@ -68,11 +68,14 @@ export async function VerifyCard_GetDoa(page) {
   const GetDoa_Card = page.getByText(('Doa Harian'))
   await expect(GetDoa_Card).toBeVisible(page);
   await page.getByText('Doa untuk dibaca setiap hari')
+  await GetDoa_Card.click();
 
   //Check the doa structure
   const GetDoa_Structure = page.locator('.font-arabic');
   await expect(GetDoa_Structure).toBeVisible(page);
-  await expect(page.locator('h3.font-semibold')).toBeVisible();
-  await expect(page.locator('h3.font-semibold')).not.toBeEmpty();
+
+  const GetDoa_HadisTitle = page.locator('h3.text-sm.font-semibold.leading-relaxed');
+  await expect(GetDoa_HadisTitle).toBeVisible();
+  await expect(GetDoa_HadisTitle).not.toBeEmpty();
   
 }
