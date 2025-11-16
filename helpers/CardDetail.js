@@ -89,8 +89,8 @@ export async function VerifyCard_GetDoa(page) {
   await expect (page.getByText('Dikuasakan oleh')).toBeVisible();
   
   // Check link
-  const getDoaLink = page.getByRole('link', { name: 'GetDoa' });
-  await expect(getDoaLink).toBeVisible().first().toBeVisible();
+  const getDoaLink = page.getByRole('link', { name: 'GetDoa' }).first();
+  await expect(getDoaLink).toBeVisible();
   await expect(getDoaLink).toHaveAttribute('href', 'https://getdoa.com');
   await expect(getDoaLink).toHaveAttribute('target', '_blank');
   
