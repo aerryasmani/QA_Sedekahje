@@ -11,19 +11,19 @@ test.beforeEach(async ({ page }) => {
   await VerifyModalPopup(page);
 });
 
-test('CF - 011 | Detail Page | Card Detail Page Is Present', async ({page}) =>{
+test('CF - 011 | Surau Detail Page | Card Detail Page Is Present', async ({page}) =>{
  await VerifySurauButton(page);
  await VerifyCard_Result(page);
 });
 
-test ('CF - 012 | Detail Page | Peta buttonpxn is present and visible',async({page}) => {
+test ('CF - 012 | Surau Detail Page | Peta buttonpxn is present and visible',async({page}) => {
   await VerifySurauButton(page);
   await VerifyCard_Result(page);
   await VerifyCard_PetaButton(page);
   await VerifyPetaButton_Result(page);
 });
 
-test ('CF - 013| Detail Page| Doa Section is present',async ({page}) => {
+test ('CF - 013| Surau Detail Page| Doa Section is present',async ({page}) => {
   await VerifySurauButton(page);
   await VerifyCard_Result(page);
   await VerifyCard_PetaButton(page);
