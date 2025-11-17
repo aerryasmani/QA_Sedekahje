@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result,VerifyCard_GetDoa} from '../../helpers/SurauCardDetail';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result,VerifyCard_GetDoa,VerifyFooter} from '../../helpers/SurauCardDetail';
 import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result} from '../../helpers/homepage';
 
 const BaseURL = 'https://sedekah.je/';
@@ -29,4 +29,11 @@ test ('CF - 013| Surau Detail Page| Doa Section is present',async ({page}) => {
   await VerifyCard_PetaButton(page);
   await VerifyCard_GetDoa(page);
 
+});
+
+test ('CF - 014| Surau Detail Page| Footer Section is present',async ({page}) => {
+  await VerifySurauButton(page);
+  await VerifyCard_Result(page);
+  await VerifyCard_PetaButton(page);
+  await VerifyFooter(page);
 });

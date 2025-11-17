@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result,} from '../../helpers/homepage';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton} from '../../helpers/SurauCardDetail';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyFooter} from '../../helpers/SurauCardDetail';
 import {VerifyLainButton} from '../../helpers/LainCardDetail';
 
 const BaseURL = 'https://sedekah.je/';
@@ -12,6 +12,6 @@ test.beforeEach(async ({ page }) => {
   await VerifyModalPopup(page);
 });
 
-test('CF-01 | Homepage | Title displays correctly on page load', async ({ page }) => {
+test('CF-01 | Lain Detail Page | Title displays correctly on page load', async ({ page }) => {
   await VerifyPageTitle(page);
 });

@@ -99,3 +99,11 @@ export async function VerifyCard_GetDoa(page) {
   await expect(externalIcon).toBeVisible();
 
 }
+
+export async function VerifyFooter(page) {
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  
+  const imgIcon = page.locator('img[alt="Logo Masjid SedekahJe"]');
+  await expect (imgIcon).toBeVisible(page);
+
+}
