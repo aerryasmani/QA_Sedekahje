@@ -102,8 +102,16 @@ export async function VerifyCard_GetDoa(page) {
 
 export async function VerifyFooter(page) {
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-  
+
   const imgIcon = page.locator('img[alt="Logo Masjid SedekahJe"]');
   await expect (imgIcon).toBeVisible(page);
+
+  const imgheader = page.getByRole('heading', { name: 'sedekah.je' });
+  await expect (imgheader).toBeVisible(page);
+
+  const imgsubheader = page.locator('p', { hasText: 'QR Directory' });
+  await expect (imgsubheader).toBeVisible(page);
+
+
 
 }
