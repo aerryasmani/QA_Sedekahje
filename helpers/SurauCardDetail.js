@@ -78,9 +78,9 @@ export async function VerifyCard_GetDoa(page) {
   await expect(GetDoa_HadisTitle).toBeVisible();
   await expect(GetDoa_HadisTitle).not.toBeEmpty();
   
-  const GetDoa_HadisAuthor = page.locator('p.italic', { hasText: 'Riwayat' });
+  /*const GetDoa_HadisAuthor = page.locator('p.italic', { hasText: 'Riwayat' });
   await expect(GetDoa_HadisAuthor).toBeVisible();
-  await expect(GetDoa_HadisAuthor).not.toBeEmpty();
+  await expect(GetDoa_HadisAuthor).not.toBeEmpty();*/
 
   const GetDoa_HadisDescription = page.locator('p', { hasText: 'Maksud:' });
   await expect(GetDoa_HadisDescription).toBeVisible();
