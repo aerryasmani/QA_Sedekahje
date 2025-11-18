@@ -112,6 +112,30 @@ export async function VerifyFooter(page) {
   const imgsubheader = page.locator('p', { hasText: 'QR Directory' });
   await expect (imgsubheader).toBeVisible(page);
 
+  //Verify the text under the Icon
+    const ModalContentLocator = [
+  'Senarai QR masjid, surau, dan institusi yang dikumpulkan oleh netizen untuk memudahkan sedekah dan sumbangan.',
+  ]
 
+  await expect(page.locator('div[role="dialog"] p')).toHaveCount(0); 
 
+  for (const text of ModalContentLocator) {
+    await expect(page.getByText(text)).toBeVisible();
+  }
+
+  //Verify Social Media
+
+  // Check social media links
+  const socMedX = page.locator('a[href="https://x.com/sedekahje"]');
+  const socMedGithub = page.getByRole('link', { name: 'GitHub' });
+
+  await expect(socMedX).toBeVisible();
+  await expect(socMedX).toHaveAttribute('target', '_blank');
+  await expect(socMedX).toHaveAttribute('rel', 'noreferrer');
+
+  await expect(socMedGithub).toBeVisible();
+  await expect(socMedGithub).toHaveAttribute('href', 'https://github.com/khrnchn/sedekah-je');
+  await expect(socMedGithub).toHaveAttribute('target', '_blank');
+  await expect(socMedGithub).toHaveAttribute('rel', 'noreferrer');
+  
 }
