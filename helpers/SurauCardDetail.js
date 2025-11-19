@@ -125,7 +125,7 @@ export async function VerifyFooter_BrandSection(page) {
   
 }
 
-export async function VerifyFooter_Socmedia(params) {
+export async function VerifyFooter_Socmedia(page) {
   // Check social media links
   const socMedX = page.locator('a[href="https://x.com/sedekahje"]');
   const socMedGithub = page.getByRole('link', { name: 'GitHub' });
@@ -138,4 +138,12 @@ export async function VerifyFooter_Socmedia(params) {
   await expect(socMedGithub).toHaveAttribute('href', 'https://github.com/khrnchn/sedekah-je');
   await expect(socMedGithub).toHaveAttribute('target', '_blank');
   await expect(socMedGithub).toHaveAttribute('rel', 'noreferrer');
+}
+
+export async function VerifySurau_Flow(page) {
+  await VerifySurauButton(page);
+  await VerifyCard_Result(page);
+  await VerifyCard_PetaButton(page);
+  await VerifyCard_GetDoa(page);
+
 }
