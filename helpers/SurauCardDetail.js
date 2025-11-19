@@ -100,7 +100,7 @@ export async function VerifyCard_GetDoa(page) {
 
 }
 
-export async function VerifyFooter(page) {
+export async function VerifyFooter_BrandSection(page) {
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
   const imgIcon = page.locator('img[alt="Logo Masjid SedekahJe"]');
@@ -122,9 +122,10 @@ export async function VerifyFooter(page) {
   for (const text of ModalContentLocator) {
     await expect(page.getByText(text)).toBeVisible();
   }
+  
+}
 
-  //Verify Social Media
-
+export async function VerifyFooter_Socmedia(params) {
   // Check social media links
   const socMedX = page.locator('a[href="https://x.com/sedekahje"]');
   const socMedGithub = page.getByRole('link', { name: 'GitHub' });
@@ -137,5 +138,4 @@ export async function VerifyFooter(page) {
   await expect(socMedGithub).toHaveAttribute('href', 'https://github.com/khrnchn/sedekah-je');
   await expect(socMedGithub).toHaveAttribute('target', '_blank');
   await expect(socMedGithub).toHaveAttribute('rel', 'noreferrer');
-  
 }

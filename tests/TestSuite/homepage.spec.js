@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result,} from '../../helpers/homepage';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyFooter} from '../../helpers/SurauCardDetail';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyFooter_BrandSection,VerifyFooter_Socmedia} from '../../helpers/SurauCardDetail';
 
 
 const BaseURL = 'https://sedekah.je/';
