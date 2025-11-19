@@ -38,3 +38,12 @@ test ('CF - 014| Surau Detail Page| Footer Section is present',async ({page}) =>
   await VerifyFooter_BrandSection(page);
   await VerifyFooter_Socmedia (page);
 });
+
+
+test('CF - 014b | Footer Social Media is present', async ({page}) => {
+  await VerifyFooter_Socmedia(page);
+});
+
+test('CF - 014c | Footer Rujukan Links are present', async ({page}) => {
+  await VerifyFooter_RujukanLinks(page);
+});
