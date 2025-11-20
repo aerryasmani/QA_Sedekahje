@@ -145,5 +145,20 @@ export async function VerifySurau_Flow(page) {
   await VerifyCard_Result(page);
   await VerifyCard_PetaButton(page);
   await VerifyCard_GetDoa(page);
+}
 
+export async function VerifyFooter_RujukanLinks(page) {
+ const rujukanLinks = [
+  { name: 'Sumber Kod', href: 'https://github.com/khrnchn/sedekah-je' },
+  { name: 'Data Trafik', href: 'https://analytics.farhanhelmy.com/share/qqGVUCdO8JGBoSk5/sedekah.je' },
+  { name: 'Logo', href: 'https://www.flaticon.com/free-icons/holy' },
+ ];
+
+ for (const rujukan of rujukanLinks){
+    const link = page.getByRole('link', { name: rujukan.name }).first();
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute('href', rujukan.href);
+    await expect(link).toHaveAttribute('href', rujukan.href);
+    await expect(link).toHaveAttribute('target', '_blank');
+ }
 }
