@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result,VerifyCard_GetDoa,VerifyFooter_BrandSection,VerifyFooter_Socmedia,VerifySurau_Flow,VerifyFooter_RujukanLinks} from '../../helpers/SurauCardDetail';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result,VerifyCard_GetDoa,VerifyFooter_BrandSection,VerifyFooter_Socmedia,VerifySurau_Flow,VerifyFooter_RujukanLinks,VerifyFooter_ProjectKomuniti} from '../../helpers/SurauCardDetail';
 import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result} from '../../helpers/homepage';
 
 const BaseURL = 'https://sedekah.je/';
@@ -39,13 +39,17 @@ test ('CF - 014| Surau Detail Page| Footer Section is present',async ({page}) =>
   await VerifyFooter_Socmedia (page);
 });
 
-
-test('CF - 014b | Footer Social Media is present', async ({page}) => {
+test('CF - 015 | Footer Social Media is present', async ({page}) => {
   await VerifySurau_Flow(page);
   await VerifyFooter_Socmedia(page);
 });
 
-test('CF - 014c | Footer Rujukan Links are present', async ({page}) => {
+test('CF - 016| Footer Rujukan Links are present', async ({page}) => {
   await VerifySurau_Flow(page);
   await VerifyFooter_RujukanLinks(page);
+});
+
+test('CF - 017 | Footer Project Komuniti Links are present', async ({page}) => {
+  await VerifySurau_Flow(page);
+  await VerifyFooter_ProjectKomuniti(page);
 });

@@ -148,11 +148,14 @@ export async function VerifySurau_Flow(page) {
 }
 
 export async function VerifyFooter_RujukanLinks(page) {
- const rujukanLinks = [
-  { name: 'Sumber Kod', href: 'https://github.com/khrnchn/sedekah-je' },
-  { name: 'Data Trafik', href: 'https://analytics.farhanhelmy.com/share/qqGVUCdO8JGBoSk5/sedekah.je' },
-  { name: 'Logo', href: 'https://www.flaticon.com/free-icons/holy' },
- ];
+  const rujukanLinks = [
+    { name: 'Sumber Kod', href: 'https://github.com/khrnchn/sedekah-je' },
+    { name: 'Data Trafik', href: 'https://analytics.farhanhelmy.com/share/qqGVUCdO8JGBoSk5/sedekah.je' },
+    { name: 'Logo', href: 'https://www.flaticon.com/free-icons/holy' },
+  ];
+
+  const footerText = page.getByRole('heading', { name: 'Rujukan' }).nth(1);
+  await expect(footerText).toBeVisible();
 
  for (const rujukan of rujukanLinks){
     const link = page.getByRole('link', { name: rujukan.name }).first();
@@ -161,4 +164,32 @@ export async function VerifyFooter_RujukanLinks(page) {
     await expect(link).toHaveAttribute('href', rujukan.href);
     await expect(link).toHaveAttribute('target', '_blank');
  }
+}
+
+export async function VerifyFooter_ProjectKomuniti(page){
+  const KomunitiLinks = [
+    { name: 'Cari Fatwa', href: 'https://carifatwa.com?ref=sedekah.je' },
+    { name: 'GetDoa', href: 'https://getdoa.com' },
+    { name: 'Kelas Mengaji Online', href: 'https://kelasmengaji.online?ref=sedekah.je' },
+    { name: 'Saham Akhirat', href: 'https://sahamakhirat.org?ref=sedekah.je' },
+    { name: 'Belasungkawa', href: 'https://belasungkawa.my?ref=sedekah.je' },
+    { name: 'Quran Manzil', href: 'https://quran-manzil.com?ref=sedekah.je' },
+    { name: 'Quran Sunnah AI', href: 'https://quran-sunnah-ai.com?ref=sedekah.je' },
+    { name: 'Meem', href: 'https://usemeem.com?ref=sedekah.je' },
+    { name: 'duaa.my', href: 'https://duaa.my?ref=sedekah.je' },
+    { name: 'SemakHadis.com', href: 'https://semakhadis.com?ref=sedekah.je' },
+    { name: 'CariTadika.my', href: 'https://caritadika.my?ref=sedekah.je' },
+    { name: 'e-Masjid.my', href: 'https://e-masjid.my?ref=sedekah.je' },
+  ];
+  
+  const footerText = page.getByRole('heading', { name: 'Projek Komuniti' }).nth(1);
+  await expect(footerText).toBeVisible();
+
+  for (const komuniti of KomunitiLinks){
+    const link = page.getByRole('link', { name: komuniti.name }).first();
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute('href', komuniti.href);
+    await expect(link).toHaveAttribute('target', '_blank');
+  }
+
 }
