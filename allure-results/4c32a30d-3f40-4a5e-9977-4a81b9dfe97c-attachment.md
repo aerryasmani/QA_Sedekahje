@@ -1,0 +1,201 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Masjid" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img "Masjid" [ref=e4]
+    - generic [ref=e5]:
+      - link "SedekahJe" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - heading "SedekahJe" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Senarai QR masjid, surau, dan institusi.
+    - button "Toggle theme" [ref=e10] [cursor=pointer]:
+      - img [ref=e12]
+      - generic [ref=e22]: Toggle theme
+  - generic [ref=e24]:
+    - navigation "breadcrumb" [ref=e26]:
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - link "Laman Utama" [ref=e29] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e30]:
+          - img [ref=e31]
+        - listitem [ref=e33]:
+          - link "AJK Surau Darul Istiqamah" [disabled] [ref=e34]
+    - generic [ref=e35]:
+      - button "Tunjukkan Peta" [ref=e37] [cursor=pointer]:
+        - img [ref=e38]
+        - generic [ref=e42]: Tunjukkan Peta
+      - generic [ref=e45] [cursor=pointer]:
+        - generic [ref=e46]:
+          - img "category logo" [ref=e48]
+          - heading "AJK Surau Darul Istiqamah" [level=3] [ref=e49]
+          - paragraph [ref=e50]: Kuching, Sarawak
+        - button "DuitNow" [ref=e52]:
+          - generic [ref=e53]:
+            - img "DuitNow" [ref=e55]
+            - img [ref=e56]
+        - generic [ref=e59]:
+          - button [ref=e60]:
+            - img [ref=e61]
+          - button "Kongsi" [ref=e65]:
+            - img [ref=e66]
+            - generic [ref=e72]: Kongsi
+          - button [ref=e73]:
+            - img [ref=e74]
+    - generic [ref=e78]:
+      - generic [ref=e81]:
+        - img [ref=e83]
+        - generic [ref=e85]:
+          - heading "Doa Harian" [level=2] [ref=e86]
+          - paragraph [ref=e87]: Doa untuk dibaca setiap hari
+      - generic [ref=e88]:
+        - generic [ref=e90]:
+          - heading "Doa untuk Pengantin" [level=3] [ref=e91]
+          - paragraph [ref=e93]: بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+          - generic [ref=e94]:
+            - paragraph [ref=e95]: Riwayat Abu Daud (2130), al-Tirmizi (1091), Ahmad (8957), al-Nasa'i dalam al-Sunan al-Kubra (10089), al-Baihaqi dalam al-Sunan al- Kubra (14214); al-Da'awat al-Kabir (495), dan al-Hakim dalam al-Mustadrak (2745).
+            - paragraph [ref=e96]: "Maksud: Semoga Allah memberkatimu ketika bahagia dan ketika susah, serta menghimpunkan kamu berdua dalam kebaikan."
+        - generic [ref=e97]:
+          - paragraph [ref=e98]: Dikuasakan oleh
+          - link "GetDoa" [ref=e99] [cursor=pointer]:
+            - /url: https://getdoa.com
+            - text: GetDoa
+            - img [ref=e100]
+    - generic "Footer" [ref=e104]:
+      - heading "Footer" [level=2] [ref=e105]
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - img "Logo Masjid SedekahJe" [ref=e110]
+              - generic [ref=e111]:
+                - heading "sedekah.je" [level=3] [ref=e112]
+                - paragraph [ref=e113]: QR Directory
+            - paragraph [ref=e114]: Senarai QR masjid, surau, dan institusi yang dikumpulkan oleh netizen untuk memudahkan sedekah dan sumbangan.
+            - generic [ref=e115]:
+              - link "X" [ref=e116] [cursor=pointer]:
+                - /url: https://x.com/sedekahje
+                - generic [ref=e117]: X
+                - img [ref=e118]
+              - link "GitHub" [ref=e120] [cursor=pointer]:
+                - /url: https://github.com/khrnchn/sedekah-je
+                - generic [ref=e121]: GitHub
+                - img [ref=e122]
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - heading "Rujukan" [level=3] [ref=e127]
+                - list [ref=e128]:
+                  - listitem [ref=e129]:
+                    - link "Sumber Kod" [ref=e130] [cursor=pointer]:
+                      - /url: https://github.com/khrnchn/sedekah-je
+                      - text: Sumber Kod
+                      - img [ref=e131]
+                  - listitem [ref=e135]:
+                    - link "Data Trafik" [ref=e136] [cursor=pointer]:
+                      - /url: https://analytics.farhanhelmy.com/share/qqGVUCdO8JGBoSk5/sedekah.je
+                      - text: Data Trafik
+                      - img [ref=e137]
+                  - listitem [ref=e141]:
+                    - link "Logo" [ref=e142] [cursor=pointer]:
+                      - /url: https://www.flaticon.com/free-icons/holy
+                      - text: Logo
+                      - img [ref=e143]
+              - generic [ref=e147]:
+                - heading "Projek Komuniti" [level=3] [ref=e148]
+                - list [ref=e149]:
+                  - listitem [ref=e150]:
+                    - link "Cari Fatwa" [ref=e151] [cursor=pointer]:
+                      - /url: https://carifatwa.com?ref=sedekah.je
+                      - text: Cari Fatwa
+                      - img [ref=e152]
+                  - listitem [ref=e156]:
+                    - link "GetDoa" [ref=e157] [cursor=pointer]:
+                      - /url: https://getdoa.com?ref=sedekah.je
+                      - text: GetDoa
+                      - img [ref=e158]
+                  - listitem [ref=e162]:
+                    - link "Kelas Mengaji Online" [ref=e163] [cursor=pointer]:
+                      - /url: https://kelasmengaji.online?ref=sedekah.je
+                      - text: Kelas Mengaji Online
+                      - img [ref=e164]
+                  - listitem [ref=e168]:
+                    - link "Saham Akhirat" [ref=e169] [cursor=pointer]:
+                      - /url: https://sahamakhirat.org?ref=sedekah.je
+                      - text: Saham Akhirat
+                      - img [ref=e170]
+                  - listitem [ref=e174]:
+                    - link "Belasungkawa" [ref=e175] [cursor=pointer]:
+                      - /url: https://belasungkawa.my?ref=sedekah.je
+                      - text: Belasungkawa
+                      - img [ref=e176]
+                  - listitem [ref=e180]:
+                    - link "Quran Manzil" [ref=e181] [cursor=pointer]:
+                      - /url: https://quran-manzil.com?ref=sedekah.je
+                      - text: Quran Manzil
+                      - img [ref=e182]
+            - generic [ref=e186]:
+              - generic [ref=e187]:
+                - heading "Projek Komuniti" [level=3] [ref=e188]
+                - list [ref=e189]:
+                  - listitem [ref=e190]:
+                    - link "Quran Sunnah AI" [ref=e191] [cursor=pointer]:
+                      - /url: https://quran-sunnah-ai.com?ref=sedekah.je
+                      - text: Quran Sunnah AI
+                      - img [ref=e192]
+                  - listitem [ref=e196]:
+                    - link "Meem" [ref=e197] [cursor=pointer]:
+                      - /url: https://usemeem.com?ref=sedekah.je
+                      - text: Meem
+                      - img [ref=e198]
+                  - listitem [ref=e202]:
+                    - link "duaa.my" [ref=e203] [cursor=pointer]:
+                      - /url: https://duaa.my?ref=sedekah.je
+                      - text: duaa.my
+                      - img [ref=e204]
+                  - listitem [ref=e208]:
+                    - link "SemakHadis.com" [ref=e209] [cursor=pointer]:
+                      - /url: https://semakhadis.com?ref=sedekah.je
+                  - listitem [ref=e210]:
+                    - link "CariTadika.my" [ref=e211] [cursor=pointer]:
+                      - /url: https://caritadika.my?ref=sedekah.je
+                      - text: CariTadika.my
+                      - img [ref=e212]
+                  - listitem [ref=e216]:
+                    - link "e-Masjid.my" [ref=e217] [cursor=pointer]:
+                      - /url: https://e-masjid.my?ref=sedekah.je
+                      - text: e-Masjid.my
+                      - img [ref=e218]
+              - generic [ref=e222]:
+                - heading "Projek Lain" [level=3] [ref=e223]
+                - list [ref=e224]:
+                  - listitem [ref=e225]:
+                    - link "Portfolio Saya" [ref=e226] [cursor=pointer]:
+                      - /url: https://khairin.my?ref=sedekah.je
+                      - text: Portfolio Saya
+                      - img [ref=e227]
+                  - listitem [ref=e231]:
+                    - link "Dropjual.com" [ref=e232] [cursor=pointer]:
+                      - /url: https://dropjual.com?ref=sedekah.je
+                      - text: Dropjual.com
+                      - img [ref=e233]
+        - generic [ref=e237]:
+          - paragraph [ref=e238]:
+            - text: © 2025 Hak Cipta Terpelihara. Dibina dengan
+            - img [ref=e239]
+            - text: oleh
+            - link "Khairin Chan dan kawan-kawan" [ref=e241] [cursor=pointer]:
+              - /url: https://github.com/khrnchn/sedekah-je/graphs/contributors
+            - text: .
+          - generic [ref=e242]:
+            - link "Soalan Lazim" [ref=e243] [cursor=pointer]:
+              - /url: /faq
+            - generic [ref=e244]: •
+            - link "Sumber Kod" [ref=e245] [cursor=pointer]:
+              - /url: https://github.com/khrnchn/sedekah-je
+  - region "Notifications alt+T"
+  - alert [ref=e246]: AJK Surau Darul Istiqamah - Sedekah Digital | Sedekah Je
+```
