@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';allure serve allure-results
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   reporter: [
