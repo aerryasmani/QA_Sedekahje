@@ -83,31 +83,28 @@ npx playwright show-report
 
 ---
 
-## 📁 File Structure
+## File Structure
 
 ```
-PLAYWRIGHT_SEDEKAHJE/
-├── helpers/
+tests/
+├── TestSuite/
 │   ├── homepage.js              (Helper functions)
 │   ├── SurauCardDetail.js       (Helper functions)
-│   └── LainCardDetail.js        (Helper functions)
-├── tests/
-│   ├── TestSuite/
-│   │   ├── homepage.spec.js         (Test specs)
-│   │   ├── Surau_detailpage.spec.js (Test specs)
-│   │   └── Lain_detailpage.spec.js  (Test specs)
-│   └── test-cases/
-│       ├── README.md                (This file)
-│       ├── homepage-tests.md
-│       ├── surau-detail-tests.md
-│       ├── lain-detail-tests.md
-│       ├── test-execution-guide.md
-│       └── QUICK-REFERENCE.md
+│   ├── LainCardDetail.js        (Helper functions)
+│   ├── homepage.spec.js         (Test specs)
+│   ├── Surau_detailpage.spec.js (Test specs)
+│   └── Lain_detailpage.spec.js  (Test specs)
+└── test-cases/
+    ├── README.md                (This file)
+    ├── homepage-tests.md
+    ├── surau-detail-tests.md
+    ├── lain-detail-tests.md
+    └── test-execution-guide.md
 ```
 
 ---
 
-## 🏷️ Test Case Naming Convention
+## Test Case Naming Convention
 
 Format: `CF-XXX | Feature | Description`
 
@@ -118,7 +115,7 @@ Format: `CF-XXX | Feature | Description`
 
 ---
 
-## 📝 Test Case Template
+## Test Case Template
 
 When adding new test cases, use this template:
 
@@ -158,7 +155,7 @@ When adding new test cases, use this template:
 
 ---
 
-## 🔗 Related Documentation
+## Related Documentation
 
 - [Test Execution Guide](test-execution-guide.md)
 - [Playwright Documentation](https://playwright.dev/)
@@ -166,7 +163,7 @@ When adding new test cases, use this template:
 
 ---
 
-## 🤝 Contributing
+## How Contributing
 
 When adding new test cases:
 
