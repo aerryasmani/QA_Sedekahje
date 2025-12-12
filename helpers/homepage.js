@@ -43,8 +43,6 @@ export async function VerifyLogoVisibility (page) {
 const LogoLocator = page.getByRole('img', { name: 'Masjid' }).first();
 await expect(LogoLocator).toBeVisible();
 
-await expect(LogoLocator).toBeVisible();
-
 await expect(LogoLocator).toHaveAttribute('alt', 'Masjid');
 await expect(LogoLocator).toHaveAttribute('src', '/masjid.svg');
 await expect(LogoLocator).toHaveAttribute('width', '100');
@@ -80,7 +78,7 @@ export async function VerifyOrgButton(page){
     await btn.click();
     await expect(page.getByText(FilterText)).toBeVisible();
     await page.waitForTimeout(5000);
-    await page.goto(BaseURL);
+    //await page.goto(BaseURL);
   }
 
 }

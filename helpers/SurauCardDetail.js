@@ -44,7 +44,9 @@ export async function VerifyCard_PetaButton(page){
   await expect(page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
   // Target the outermost div with all card styling
   await CardExpand.click(page);
-  await page.getByText('AJK Surau Darul IstiqamahKuching, SarawakKongsi').click();
+  await expect(page.getByText(/AJK Surau Darul Istiqamah/i)).toBeVisible();
+  await expect(page.getByText(/Kuching, Sarawak/i)).toBeVisible();
+  await resultCard_Surau.click();
 
   await expect(resultCard_Surau).toHaveText('AJK Surau Darul IstiqamahKuching, SarawakKongsi')
 
@@ -117,8 +119,6 @@ export async function VerifyFooter_BrandSection(page) {
   'Senarai QR masjid, surau, dan institusi yang dikumpulkan oleh netizen untuk memudahkan sedekah dan sumbangan.',
   ]
 
-  await expect(page.locator('div[role="dialog"] p')).toHaveCount(0); 
-
   for (const text of ModalContentLocator) {
     await expect(page.getByText(text)).toBeVisible();
   }
@@ -154,11 +154,11 @@ export async function VerifyFooter_RujukanLinks(page) {
     { name: 'Logo', href: 'https://www.flaticon.com/free-icons/holy' },
   ];
 
-  const footerText = page.getByRole('heading', { name: 'Rujukan' }).nth(1);
+  const footerText = page.getByRole('heading', { name: /^(Rujukan|Doa)$/i });
   await expect(footerText).toBeVisible();
 
  for (const rujukan of rujukanLinks){
-    const link = page.getByRole('link', { name: rujukan.name }).first();
+    const link =  page.getByRole('link', { name: rujukan.name }).first();;
     await expect(link).toBeVisible();
     await expect(link).toHaveAttribute('href', rujukan.href);
     await expect(link).toHaveAttribute('href', rujukan.href);

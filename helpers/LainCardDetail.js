@@ -3,7 +3,7 @@ const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
 
 
 export async function VerifyLainButton(page){
- const btnLain = page.getByRole('button', { name: 'Surau' })
+ const btnLain = page.getByRole('button', { name: 'Lain-lain' })
  await expect(btnLain).toBeVisible();
  await btnLain.click()
 
