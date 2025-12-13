@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
 
-
 export async function VerifyLainButton(page){
  const btnLain = page.getByRole('button', { name: 'Lain-lain' })
  await expect(btnLain).toBeVisible();
@@ -28,6 +27,15 @@ export async function VerifyLainCard_Result(page){
 
  const ShareButton = resultCard_Lain.locator('button', { has: page.locator('svg.lucide-share2') });
  await expect(ShareButton).toBeVisible();
+}
+
+export async function LainCard_Expand(page) {
+  const resultCard_Lain = page.locator('div.rounded-lg.bg-card').first();
+
+  const cardTitle = resultCard_Lain.locator('h3.text-lg.font-semibold');
+  await expect(cardTitle).toHaveText('AJK Tanah Kubur Peradong'); 
+
+  await cardTitle.click();
 }
 
 export async function VerifyCardLain_PetaButton(page){
