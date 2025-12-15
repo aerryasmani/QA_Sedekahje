@@ -1,4 +1,4 @@
-# Scheduled Playwright Test Suite
+# Scheduled Playwright Test Suite with Blacksmith
 name: Run Playwright TestSuite on Schedule
 
 on:
@@ -10,12 +10,14 @@ on:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204  # 🔥 Blacksmith runner
 
     strategy:
       fail-fast: false
       matrix:
         browser: [chromium, firefox, webkit]
+        shardIndex: [1, 2]
+        shardTotal: [2]
 
     steps:
       - name: Checkout repository
@@ -25,21 +27,38 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(npm list @playwright/test --depth=0 --json | jq -r '.dependencies["@playwright/test"].version')" >> $GITHUB_OUTPUT
 
-      - name: Run Playwright tests on ${{ matrix.browser }}
-        run: npx playwright test --project=${{ matrix.browser }} --output=playwright-report-${{ matrix.browser }}
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Install system dependencies if cached
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps ${{ matrix.browser }}
+
+      - name: Run Playwright tests
+        run: npx playwright test --project=${{ matrix.browser }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         continue-on-error: true
 
-      - name: Upload Playwright report for ${{ matrix.browser }}
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report-${{ matrix.browser }}
-          path: playwright-report-${{ matrix.browser }}/
+          name: test-results-${{ matrix.browser }}-${{ matrix.shardIndex }}
+          path: test-results/
           retention-days: 30
