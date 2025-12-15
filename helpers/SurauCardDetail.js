@@ -36,6 +36,15 @@ export async function VerifyCard_Result(page){
 
 }
 
+export async function SurauCard_Expand(page) {
+  const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();
+
+ const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');
+ await expect(page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
+
+  await cardTitle.click();
+}
+
 export async function VerifyCard_PetaButton(page){
   const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();
   //const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');

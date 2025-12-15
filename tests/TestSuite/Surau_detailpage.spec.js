@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result,VerifyCard_GetDoa,VerifyFooter_BrandSection,VerifyFooter_Socmedia,VerifySurau_Flow,VerifyFooter_RujukanLinks,VerifyFooter_ProjectKomuniti} from '../../helpers/SurauCardDetail';
+import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyPetaButton_Result,VerifyCard_GetDoa,VerifyFooter_BrandSection,VerifyFooter_Socmedia,VerifySurau_Flow,VerifyFooter_RujukanLinks,VerifyFooter_ProjectKomuniti, SurauCard_Expand} from '../../helpers/SurauCardDetail';
 import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result} from '../../helpers/homepage';
 
 const BaseURL = 'https://sedekah.je/';
@@ -25,7 +25,7 @@ test.describe('Surau Detail Page Test', () => {
 
   });
 
-  test ('CF - 012 | Surau Detail Page | Peta button is present and visible',async({page}) => {
+  test('CF - 012 | Surau Detail Page | Peta button is present and visible',async({page}) => {
     
     await test.step('Verify the Surau Button functionality', async () => {
       await VerifySurauButton(page);
@@ -45,7 +45,7 @@ test.describe('Surau Detail Page Test', () => {
 
   });
 
-  test ('CF - 013| Surau Detail Page| Doa Section is present',async ({page}) => {
+  test('CF - 013| Surau Detail Page| Doa Section is present',async ({page}) => {
      await test.step('Verify the Surau Button functionality', async () => {
       await VerifySurauButton(page);
     });
@@ -54,8 +54,12 @@ test.describe('Surau Detail Page Test', () => {
       await VerifyCard_Result(page);
     });
 
+    await test.step('Verify the Surau Detail Page Click', async () => {
+      await SurauCard_Expand(page);
+    });
+
     await test.step('Verify the GetDoa Section is present', async () => {
-      await VerifyCard_GetDoa(page);;
+      await VerifyCard_GetDoa(page);
     });
 
   });
@@ -63,7 +67,7 @@ test.describe('Surau Detail Page Test', () => {
 });
 
 test.describe('Surau Detail Page Footer Test',()=>{
- test ('CF - 014| Surau Detail Page| Footer Section is present',async ({page}) => {
+ test('CF - 014| Surau Detail Page| Footer Section is present',async ({page}) => {
     
     await test.step('Verify the Surau Button functionality', async () => {
       await VerifySurauButton(page);
@@ -71,6 +75,7 @@ test.describe('Surau Detail Page Footer Test',()=>{
     
     await test.step('Verify the Surau Detail Page Is Present & Visible', async () => {
       await VerifyCard_Result(page);
+      await SurauCard_Expand(page);
     });
 
     await test.step('Verify the Brand Section is present', async () => {
@@ -86,13 +91,14 @@ test.describe('Surau Detail Page Footer Test',()=>{
     
     await test.step('Verify the Surau Detail Page Is Present & Visible', async () => {
       await VerifyCard_Result(page);
+      await SurauCard_Expand(page);
     });
 
     await test.step('Verify the Brand Section is present', async () => {
       await VerifyFooter_BrandSection(page);
     });
 
-    await test.step('Verify the Socmedia Section is present', async () => {
+    await test.step('Verify the Social Media Section is present', async () => {
       await VerifyFooter_Socmedia (page);
     });
 
@@ -105,17 +111,18 @@ test.describe('Surau Detail Page Footer Test',()=>{
     
     await test.step('Verify the Surau Detail Page Is Present & Visible', async () => {
       await VerifyCard_Result(page);
+      await SurauCard_Expand(page);
     });
 
     await test.step('Verify the Brand Section is present', async () => {
       await VerifyFooter_BrandSection(page);
     });
 
-    await test.step('Verify the Socmedia Section is present', async () => {
+    await test.step('Verify the Social Media Section is present', async () => {
       await VerifyFooter_Socmedia (page);
     });
 
-    await test.step('Verify the Socmedia Section is present', async () => {
+    await test.step('Verify the Social Media Section is present', async () => {
       await VerifyFooter_RujukanLinks(page);
     });
 
@@ -129,21 +136,22 @@ test.describe('Surau Detail Page Footer Test',()=>{
     
     await test.step('Verify the Surau Detail Page Is Present & Visible', async () => {
       await VerifyCard_Result(page);
+      await SurauCard_Expand(page);
     });
 
     await test.step('Verify the Brand Section is present', async () => {
       await VerifyFooter_BrandSection(page);
     });
 
-    await test.step('Verify the Socmedia Section is present', async () => {
+    await test.step('Verify the Social Media Section is present', async () => {
       await VerifyFooter_Socmedia (page);
     });
 
-    await test.step('Verify the Socmedia Section is present', async () => {
+    await test.step('Verify the Social Media Section is present', async () => {
       await VerifyFooter_RujukanLinks(page);
     });
 
-    await test.step('Verify the Socmedia Section is present', async () => {
+    await test.step('Verify the Social Media Section is present', async () => {
       await VerifyFooter_ProjectKomuniti(page);
     });
   });
