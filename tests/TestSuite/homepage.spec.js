@@ -21,36 +21,35 @@ test.setTimeout(300000);
 });*/
 
 
-test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
-  await VerifyPageTitle(page);
-});
+test.describe('Homepage Tests', () => {
+  test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
+    await VerifyPageTitle(page);
+  });
 
-test('CF-003 | Homepage | Should display logo correctly on page load', async ({ page }) => {
-  await VerifyLogoVisibility(page);
-});
+  test('CF-003 | Homepage | Should display logo correctly on page load', async ({ page }) => {
+    await VerifyLogoVisibility(page);
+  });
 
+  test('CF-004 | Homepage | Mode toggle display correctly on page load', async ({ page }) => {
+    await VerifyToggleButton(page);
+  });
 
-test('CF-004 | Homepage | Mode toogle display correctly on page load', async ({ page }) => {
-  await VerifyToogleButton(page);
-});
+  test('CF-005 | Homepage | Institution Buttons display and function correctly on page load', async ({ page }) => {
+    await VerifyOrgButton(page);
+  });
 
-test('CF-005 | Homepage | Institution Buttons display and function correctly on page load', async ({ page }) => {
-  await VerifyOrgButton(page);
-});
+  test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
+    await VerifyDropdown(page);
+    await DropdownFunctionality(page);
+  });
 
+  test('CF-007 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
+    await VerifySearchbar(page);
+    await VerifySearchbar_Result(page);
+  });
 
-test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
-  await VerifyDropdown(page);
-  await DropdownFunctionality(page)
-
-});
-
-test('CF-007 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
-  await VerifySearchbar(page);
-  await VerifySearchbar_Result(page);
-});
-
-test('CF-008 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
-  await VerifySurauButton(page);
-  await VerifyCard_Result(page);
+  test('CF-008 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
+    await VerifySurauButton(page);
+    await VerifyCard_Result(page);
+  });
 });

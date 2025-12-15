@@ -77,7 +77,7 @@ test.describe('Lain Detail Page Tests', () => {
 });
 
 // Group Footer related tests
-test.describe('Footer Tests', () => {
+test.describe('Lain Lain Footer Section', () => {
   test('CF-022 | Footer Social Media is present', async ({ page }) => {
     await test.step('Verify Lain-lain button is visible and accepts input', async () => {
       await VerifyLainButton(page);
