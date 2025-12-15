@@ -1,10 +1,9 @@
-# Scheduled Playwright Test Suite
 name: Run Playwright TestSuite on Schedule
 
 on:
   schedule:
-    - cron: "0 16 * * *" # Runs at 00:00 AM Malaysia (UTC+8)
-    - cron: "0 22 * * *" # Runs at 06:00 AM Malaysia (UTC+8)
+    - cron: "0 16 * * *"
+    - cron: "0 22 * * *"
   workflow_dispatch:
 
 jobs:
@@ -27,7 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'  # ✨ Cache npm dependencies
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -47,52 +46,18 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps ${{ matrix.browser }}
 
-      - name: Install only system dependencies if cached
+      - name: Install system dependencies if cached
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps ${{ matrix.browser }}
 
-      - name: Run Playwright tests on ${{ matrix.browser }} (Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
+      - name: Run Playwright tests
         run: npx playwright test --project=${{ matrix.browser }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         continue-on-error: true
 
-      - name: Upload blob report for ${{ matrix.browser }}-shard-${{ matrix.shardIndex }}
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report-${{ matrix.browser }}-${{ matrix.shardIndex }}
-          path: blob-report/
-          retention-days: 1
-
-  merge-reports:
-    if: always()
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Download all blob reports
-        uses: actions/download-artifact@v4
-        with:
-          path: all-blob-reports
-          pattern: blob-report-*
-          merge-multiple: true
-
-      - name: Merge reports
-        run: npx playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload merged HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report-merged
-          path: playwright-report/
+          name: test-results-${{ matrix.browser }}-${{ matrix.shardIndex }}
+          path: test-results/
           retention-days: 30
