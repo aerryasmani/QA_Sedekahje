@@ -11,7 +11,6 @@ test.beforeEach(async ({ page }) => {
   await VerifyModalPopup(page);
 });
 
-// Refactor
 test.describe('Surau Detail Page Test', () => {
   test('CF - 011 | Surau Detail Page | Card Detail Page Is Present', async ({page}) =>{
 
