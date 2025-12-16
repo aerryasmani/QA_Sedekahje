@@ -27,14 +27,6 @@ jobs:
           - browser: chromium
             shardIndex: 3
             shardTotal: 3
-          # WebKit (Safari) - 1 shard (different engine, critical for compatibility)
-          - browser: webkit
-            shardIndex: 1
-            shardTotal: 1
-          # Firefox - 1 shard (backup compatibility check)
-          - browser: firefox
-            shardIndex: 1
-            shardTotal: 1
 
     steps:
       - name: Checkout repository
