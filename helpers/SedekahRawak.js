@@ -20,4 +20,13 @@ export async function RawakButton_2(page){
     const Button = page.getByRole('button',{name:'🎲 Jana QR Secara Rawak'});
     await expect(Button).toBeVisible();
     await Button.click();
+
+    const QRTitle = page.locator('h3.text-xl.font-semibold.mb-2.text-center');
+    const initialName = await QRTitle.innerText();
+
+    await Button.click();
+    await page.waitForTimeout(1000);
+
+    const newName = await QRTitle.innerText();
+    expect(newName).not.toBe(initialName);
 }

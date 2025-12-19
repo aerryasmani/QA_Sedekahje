@@ -32,16 +32,42 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Randomizer features', () => {
-  test('CF-025 | Randomizer | Verify the Sedekah Rawak Button is present and visible', async ({ page }) => {
+  test('CF-025 | Randomizer Detail Page| Verify the Sedekah Rawak Button is present and visible', async ({ page }) => {
     await RawakButton(page);
   });
 
-  test('CF-026 | Randomizer | Verify the Randomizer button functionality', async ({ page }) => {
+  test('CF-026 | Randomizer Detail Page | Verify the Randomizer button functionality', async ({ page }) => {
     await RawakButton(page);
     await RawakButton_functionality(page);
   });
 
-  test('CF-027 | Randomizer | Verify the Second Randomizer button functionality', async ({ page }) => {
+  test('CF-027 | Randomizer Detail Page | Verify the Second Randomizer button functionality', async ({ page }) => {
+    await RawakButton(page);
+    await RawakButton_functionality(page);
     await RawakButton_2(page);
   });
 });
+
+test.describe('Randomizer Footer', () => {
+  test('CF-028 | Randomizer Page| Verify Footer Sections are Present', async ({ page }) => {
+    await RawakButton_functionality(page);
+    await VerifyFooter_BrandSection(page);
+  });
+
+  test('CF-029 | Randomizer Page| Verify Footer Social Media column are Present and visible', async ({ page }) => {
+    await RawakButton_functionality(page);
+    await VerifyFooter_Socmedia(page);
+  });
+
+  test('CF-030 | Randomizer | Verify Footer Runjukan column are Present and visible', async ({ page }) => {
+    await RawakButton_functionality(page);
+    await VerifyFooter_RujukanLinks(page);
+  });
+
+  test('CF-031 | Randomizer | Verify the Second Randomizer button functionality', async ({ page }) => {
+    await RawakButton(page);
+    await RawakButton_functionality(page);
+    await VerifyFooter_ProjectKomuniti(page);
+  });
+});
+
