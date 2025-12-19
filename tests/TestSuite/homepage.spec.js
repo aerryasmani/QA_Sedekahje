@@ -31,7 +31,7 @@ test.describe('Homepage Tests', () => {
   });
 
   test('CF-004 | Homepage | Mode toggle display correctly on page load', async ({ page }) => {
-    await VerifyToggleButton(page);
+    await VerifyToogleButton(page);
   });
 
   test('CF-005 | Homepage | Institution Buttons display and function correctly on page load', async ({ page }) => {
