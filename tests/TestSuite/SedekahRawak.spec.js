@@ -48,23 +48,30 @@ test.describe('Randomizer features', () => {
   });
 });
 
+test.describe('GetDoa Section', () => {
+  test('CF-028 | Randomizer Page| Verify GetDoa Sections are Present', async ({ page }) => {
+    await RawakButton_functionality(page);
+    await VerifyCard_GetDoa(page);
+  });
+});
+
 test.describe('Randomizer Footer', () => {
-  test('CF-028 | Randomizer Page| Verify Footer Sections are Present', async ({ page }) => {
+  test('CF-029 | Randomizer Page| Verify Footer Sections are Present', async ({ page }) => {
     await RawakButton_functionality(page);
     await VerifyFooter_BrandSection(page);
   });
 
-  test('CF-029 | Randomizer Page| Verify Footer Social Media column are Present and visible', async ({ page }) => {
+  test('CF-030 | Randomizer Page| Verify Footer Social Media column are Present and visible', async ({ page }) => {
     await RawakButton_functionality(page);
     await VerifyFooter_Socmedia(page);
   });
 
-  test('CF-030 | Randomizer | Verify Footer Runjukan column are Present and visible', async ({ page }) => {
+  test('CF-031 | Randomizer | Verify Footer Runjukan column are Present and visible', async ({ page }) => {
     await RawakButton_functionality(page);
     await VerifyFooter_RujukanLinks(page);
   });
 
-  test('CF-031 | Randomizer | Verify the Second Randomizer button functionality', async ({ page }) => {
+  test('CF-032 | Randomizer | Verify the Second Randomizer button functionality', async ({ page }) => {
     await RawakButton(page);
     await RawakButton_functionality(page);
     await VerifyFooter_ProjectKomuniti(page);
