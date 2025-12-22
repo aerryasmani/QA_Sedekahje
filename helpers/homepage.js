@@ -40,15 +40,14 @@ export async function VerifyPageTitle (page) {
 
 export async function VerifyLogoVisibility (page) {
 
-const LogoLocator = page.getByRole('img', { name: 'Masjid' }).first();
-await expect(LogoLocator).toBeVisible();
+  const LogoLocator = page.getByRole('img', { name: 'Masjid' }).first();
+  await expect(LogoLocator).toBeVisible();
 
-await expect(LogoLocator).toHaveAttribute('alt', 'Masjid');
-await expect(LogoLocator).toHaveAttribute('src', '/masjid.svg');
-await expect(LogoLocator).toHaveAttribute('width', '100');
-await expect(LogoLocator).toHaveAttribute('height', '100');
-await expect(LogoLocator).toHaveAttribute('loading', 'lazy');
-
+  await expect(LogoLocator).toHaveAttribute('alt', 'Masjid');
+  await expect(LogoLocator).toHaveAttribute('src', '/masjid.svg');
+  await expect(LogoLocator).toHaveAttribute('width', '100');
+  await expect(LogoLocator).toHaveAttribute('height', '100');
+  await expect(LogoLocator).toHaveAttribute('loading', 'lazy');
 }
 
 export async function VerifyToogleButton(page){
@@ -145,7 +144,6 @@ export async function DropdownFunctionality(page, baseURL){
 
     // Wait for 5 seconds
     await page.waitForTimeout(5000);
-
     await option.scrollIntoViewIfNeeded();
     
 

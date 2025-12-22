@@ -20,7 +20,7 @@ test.setTimeout(300000);
   await VerifyModalPopup(page);
 });*/
 
-
+//------- Positive Test Cases ------//
 test.describe('Homepage Tests', () => {
   test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
     await VerifyPageTitle(page);
@@ -53,3 +53,4 @@ test.describe('Homepage Tests', () => {
     await VerifyCard_Result(page);
   });
 });
+
