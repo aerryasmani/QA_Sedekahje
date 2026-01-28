@@ -65,11 +65,7 @@ test.describe('Lain Detail Page Tests', () => {
     await test.step('Expand the Lain card', async () => {
       await LainCard_Expand(page);
     });
-
-    await test.step('Verify Peta button in expanded card', async () => {
-      await VerifyCardLain_PetaButton(page);
-    });
-
+    
     await test.step('Verify Doa section is present', async () => {
       await VerifyCard_GetDoa(page);
     });

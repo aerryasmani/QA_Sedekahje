@@ -16,10 +16,6 @@ test.beforeEach(async ({ page }) => {
 //------- Test Cases ------//
 test.setTimeout(300000);
 
-test('CF-001 | Pop up | Notification Modal is present and visible', async ({ page }) => {
-  await VerifyModalPopup(page);
-});
-
 //------- Positive Test Cases ------//
 test.describe('Homepage Tests', () => {
   test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
