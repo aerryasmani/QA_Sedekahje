@@ -25,3 +25,28 @@ test.describe('API Tests', () => {
   });
 
 });
+
+// Authentication with headers
+test('API with auth token', async ({ request }) => {
+  const response = await request.get('/protected-endpoint', {
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN_HERE'
+    }
+  });
+  expect(response.ok()).toBeTruthy();
+});
+
+// Testing error responses
+test('Handle 404 error', async ({ request }) => {
+  const response = await request.get('/non-existent');
+  expect(response.status()).toBe(404);
+});
+
+// Response time testing
+test('API performance', async ({ request }) => {
+  const start = Date.now();
+  await request.get('/endpoint');
+  const duration = Date.now() - start;
+  
+  expect(duration).toBeLessThan(2000); // under 2 seconds
+});
