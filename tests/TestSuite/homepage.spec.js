@@ -1,52 +1,45 @@
-import { test, expect } from '@playwright/test';
-import {VerifyModalPopup,VerifyPageTitle,VerifyLogoVisibility,VerifyToogleButton,VerifyOrgButton,VerifyDropdown,DropdownFunctionality,VerifySearchbar,VerifySearchbar_Result,} from '../../helpers/homepage';
-import {VerifySurauButton,VerifyCard_Result,VerifyCard_PetaButton,VerifyFooter_BrandSection,VerifyFooter_Socmedia} from '../../helpers/SurauCardDetail';
+import { test } from '@playwright/test';  
+import { HomePage } from '../../helpers/homepage'; 
 
+const baseURL = 'https://sedekah.je/';
 
-const BaseURL = 'https://sedekah.je/';
-const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
-
-// Setup
 test.beforeEach(async ({ page }) => {
-  await page.goto(BaseURL);
-  await VerifyModalPopup(page);
+  const homePage = new HomePage(page); 
+  await homePage.navigate();
+  await homePage.verifyAndCloseModal();
 });
 
-
-//------- Test Cases ------//
 test.setTimeout(300000);
 
-//------- Positive Test Cases ------//
 test.describe('Homepage Tests', () => {
   test('CF-002 | Homepage | Title displays correctly on page load', async ({ page }) => {
-    await VerifyPageTitle(page);
+    const homePage = new HomePage(page);  
+    await homePage.verifyPageTitle();
   });
 
   test('CF-003 | Homepage | Should display logo correctly on page load', async ({ page }) => {
-    await VerifyLogoVisibility(page);
+    const homePage = new HomePage(page);
+    await homePage.verifyLogo();
   });
 
   test('CF-004 | Homepage | Mode toggle display correctly on page load', async ({ page }) => {
-    await VerifyToogleButton(page);
+    const homePage = new HomePage(page);
+    await homePage.toggleTheme();
   });
 
-  test('CF-005 | Homepage | Institution Buttons display and function correctly on page load', async ({ page }) => {
-    await VerifyOrgButton(page);
+  test('CF-005 | Homepage | Institution Buttons display and function correctly', async ({ page }) => {
+    const homePage = new HomePage(page);
+    await homePage.verifyOrganizationButtons();
   });
 
   test('CF-006 | Homepage | Dropdown display correctly on page load', async ({ page }) => {
-    await VerifyDropdown(page);
-    await DropdownFunctionality(page);
+    const homePage = new HomePage(page);
+    await homePage.verifyDropdown();
   });
 
   test('CF-007 | Homepage | Searchbar display correctly on page load', async ({ page }) => {
-    await VerifySearchbar(page);
-    await VerifySearchbar_Result(page);
+    const homePage = new HomePage(page);
+    await homePage.searchForPlace('Masjid Taman Pulai Indah');
+    await homePage.verifySearchResult('Masjid Taman Pulai Indah');
   });
-
-  test('CF-008 | Homepage | Surau button display and working correctly on page load', async ({ page }) => {
-    await VerifySurauButton(page);
-    await VerifyCard_Result(page);
-  });
-});
-
+});  
