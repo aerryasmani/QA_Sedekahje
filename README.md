@@ -246,4 +246,4 @@ When adding new tests:
 - **Language**: JavaScript
 - **Design Pattern**: Page Object Model (POM)
 - **Test Organization**: Test suites with beforeEach hooks
-- **Reporting**: Playwright HTML Reporter
+- **Reporting**: Playwright HTML Reporter , Allure
