@@ -1,80 +1,104 @@
-import { test, expect } from '@playwright/test';
-import { VerifyModalPopup } from '../../helpers/homepage'; // Removed unused imports from homepage
-import {
-  VerifySurauButton,
-  VerifyCard_Result,
-  VerifyCard_PetaButton,
-  VerifyFooter_BrandSection,
-  VerifyFooter_Socmedia,
-  VerifyCard_GetDoa,
-  VerifyFooter_RujukanLinks,
-  VerifyFooter_ProjectKomuniti,
-} from '../../helpers/SurauCardDetail';
-import {
-  VerifyLainButton,
-  VerifyLainCard_Result,
-  LainCard_Expand,
-  VerifyCardLain_PetaButton,
-} from '../../helpers/LainCardDetail';
-import{
-RawakButton,
-RawakButton_functionality,
-RawakButton_2,
-} from '../../helpers/SedekahRawak';
+import { test } from '@playwright/test';
+import { HomePage } from '../../helpers/homepage';
+import { SedekahRawak } from '../../helpers/SedekahRawak';
+import { SurauCardDetailPage } from '../../helpers/SurauCardDetail';
 
-const BaseURL = 'https://sedekah.je/';
-const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
+const baseURL = 'https://sedekah.je/';
 
 // Setup
 test.beforeEach(async ({ page }) => {
-  await page.goto(BaseURL);
-  await VerifyModalPopup(page);
+  const homePage = new HomePage(page);
+  await homePage.navigate();
+  await homePage.verifyAndCloseModal();
 });
 
-test.describe('Randomizer features', () => {
-  test('CF-025 | Randomizer Detail Page| Verify the Sedekah Rawak Button is present and visible', async ({ page }) => {
-    await RawakButton(page);
+test.setTimeout(300000);
+
+test.describe('Randomizer Features', () => {
+  
+  test('CF-025 | Randomizer Detail Page | Verify the Sedekah Rawak Button is present and visible', async ({ page }) => {
+    const rawakPage = new SedekahRawak(page);
+    await rawakPage.verifySedekahRawakButton();
   });
 
   test('CF-026 | Randomizer Detail Page | Verify the Randomizer button functionality', async ({ page }) => {
-    await RawakButton(page);
-    await RawakButton_functionality(page);
+    const rawakPage = new SedekahRawak(page);
+    await rawakPage.navigateToRandomizer();
   });
 
   test('CF-027 | Randomizer Detail Page | Verify the Second Randomizer button functionality', async ({ page }) => {
-    await RawakButton(page);
-    await RawakButton_functionality(page);
-    await RawakButton_2(page);
+    const rawakPage = new SedekahRawak(page);
+    await rawakPage.openAndTestRandomizer();
   });
 });
 
 test.describe('GetDoa Section', () => {
-  test('CF-028 | Randomizer Page| Verify GetDoa Sections are Present', async ({ page }) => {
-    await RawakButton_functionality(page);
-    await VerifyCard_GetDoa(page);
+  
+  test('CF-028 | Randomizer Page | Verify GetDoa Sections are Present', async ({ page }) => {
+    const rawakPage = new SedekahRawak(page);
+    const surauPage = new SurauCardDetailPage(page);
+    
+    await test.step('Navigate to randomizer', async () => {
+      await rawakPage.clickSedekahRawakButton();
+    });
+
+    await test.step('Verify GetDoa section is present', async () => {
+      await surauPage.verifyCardGetDoa();
+    });
   });
 });
 
 test.describe('Randomizer Footer', () => {
-  test('CF-029 | Randomizer Page| Verify Footer Sections are Present', async ({ page }) => {
-    await RawakButton_functionality(page);
-    await VerifyFooter_BrandSection(page);
+  
+  test('CF-029 | Randomizer Page | Verify Footer Sections are Present', async ({ page }) => {
+    const rawakPage = new SedekahRawak(page);
+    const surauPage = new SurauCardDetailPage(page);
+    
+    await test.step('Navigate to randomizer', async () => {
+      await rawakPage.clickSedekahRawakButton();
+    });
+
+    await test.step('Verify footer brand section', async () => {
+      await surauPage.verifyFooterBrandSection();
+    });
   });
 
-  test('CF-030 | Randomizer Page| Verify Footer Social Media column are Present and visible', async ({ page }) => {
-    await RawakButton_functionality(page);
-    await VerifyFooter_Socmedia(page);
+  test('CF-030 | Randomizer Page | Verify Footer Social Media column are Present and visible', async ({ page }) => {
+    const rawakPage = new SedekahRawak(page);
+    const surauPage = new SurauCardDetailPage(page);
+    
+    await test.step('Navigate to randomizer', async () => {
+      await rawakPage.clickSedekahRawakButton();
+    });
+
+    await test.step('Verify footer social media section', async () => {
+      await surauPage.verifyFooterSocmedia();
+    });
   });
 
-  test('CF-031 | Randomizer | Verify Footer Runjukan column are Present and visible', async ({ page }) => {
-    await RawakButton_functionality(page);
-    await VerifyFooter_RujukanLinks(page);
+  test('CF-031 | Randomizer | Verify Footer Rujukan column are Present and visible', async ({ page }) => {
+    const rawakPage = new SedekahRawak(page);
+    const surauPage = new SurauCardDetailPage(page);
+    
+    await test.step('Navigate to randomizer', async () => {
+      await rawakPage.clickSedekahRawakButton();
+    });
+
+    await test.step('Verify footer rujukan links', async () => {
+      await surauPage.verifyFooterRujukanLinks();
+    });
   });
 
-  test('CF-032 | Randomizer | Verify the Second Randomizer button functionality', async ({ page }) => {
-    await RawakButton(page);
-    await RawakButton_functionality(page);
-    await VerifyFooter_ProjectKomuniti(page);
+  test('CF-032 | Randomizer | Verify Footer Project Komuniti section is present', async ({ page }) => {
+    const rawakPage = new SedekahRawak(page);
+    const surauPage = new SurauCardDetailPage(page);
+    
+    await test.step('Navigate to randomizer', async () => {
+      await rawakPage.clickSedekahRawakButton();
+    });
+
+    await test.step('Verify footer project komuniti section', async () => {
+      await surauPage.verifyFooterProjectKomuniti();
+    });
   });
 });
-

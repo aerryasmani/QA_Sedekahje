@@ -1,32 +1,54 @@
-import { test, expect } from '@playwright/test';
-const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
+import { expect } from '@playwright/test';
 
-export async function RawakButton(page){
-    const Button = page.getByRole('button',{name:'Sedekah Rawak'});
-    await expect(Button).toBeVisible();
-}
+export class SedekahRawak {
+  constructor(page) {
+    this.page = page;
+    
+    // Define all locators
+    this.sedekahRawakButton = page.getByRole('button', { name: 'Sedekah Rawak' });
+    this.janaQRButton = page.getByRole('button', { name: '🎲 Jana QR Secara Rawak' });
+    this.qrCodeIcon = page.locator('svg.lucide.lucide-qr-code');
+    this.qrTitle = page.locator('h3.text-xl.font-semibold.mb-2.text-center');
+    
+    // Constants
+    this.rawakTextPlaceholder = 'Klik butang untuk menjana kod QR rawak.';
+    this.pageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
+  }
 
-export async function RawakButton_functionality(page){
-    const Button = page.getByRole('button',{name:'Sedekah Rawak'});
-    await expect(Button).toBeVisible();
-    await Button.click();
-    const qrLocator = page.locator('svg.lucide.lucide-qr-code');
-    const RawakTextPlaceholder = 'Klik butang untuk menjana kod QR rawak.';
-    await expect(page.getByText(RawakTextPlaceholder)).toBeVisible();
-    await expect(qrLocator).toBeVisible();
-}
+  async verifySedekahRawakButton() {
+    await expect(this.sedekahRawakButton).toBeVisible();
+  }
 
-export async function RawakButton_2(page){
-    const Button = page.getByRole('button',{name:'🎲 Jana QR Secara Rawak'});
-    await expect(Button).toBeVisible();
-    await Button.click();
 
-    const QRTitle = page.locator('h3.text-xl.font-semibold.mb-2.text-center');
-    const initialName = await QRTitle.innerText();
+  async clickSedekahRawakButton() {
+    await expect(this.sedekahRawakButton).toBeVisible();
+    await this.sedekahRawakButton.click();
+    await expect(this.page.getByText(this.rawakTextPlaceholder)).toBeVisible();
+    await expect(this.qrCodeIcon).toBeVisible();
+  }
 
-    await Button.click();
-    await page.waitForTimeout(1000);
+  async verifyJanaQRButtonFunctionality() {
+    await expect(this.janaQRButton).toBeVisible();
+    
+    // Click and get initial QR title
+    await this.janaQRButton.click();
+    const initialName = await this.qrTitle.innerText();
 
-    const newName = await QRTitle.innerText();
+    // Click again and verify QR changed
+    await this.janaQRButton.click();
+    await this.page.waitForTimeout(1000);
+
+    const newName = await this.qrTitle.innerText();
     expect(newName).not.toBe(initialName);
+  }
+
+  async navigateToRandomizer() {
+    await this.verifySedekahRawakButton();
+    await this.clickSedekahRawakButton();
+  }
+
+  async openAndTestRandomizer() {
+    await this.clickSedekahRawakButton();
+    await this.verifyJanaQRButtonFunctionality();
+  }
 }

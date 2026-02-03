@@ -1,58 +1,119 @@
-import { test, expect } from '@playwright/test';
-const PageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
+import { expect } from '@playwright/test';
 
-export async function VerifyLainButton(page){
- const btnLain = page.getByRole('button', { name: 'Lain-lain' })
- await expect(btnLain).toBeVisible();
- await btnLain.click()
+export class LainCardDetailPage {
+  constructor(page) {
+    this.page = page;
+    
+    // Define all locators
+    this.lainButton = page.getByRole('button', { name: 'Lain-lain' });
+    this.filterResultText = page.getByText('Jumlah Hasil Tapisan');
+    this.firstResultCard = page.locator('div.rounded-lg.bg-card').first();
+    this.cardLogo = this.firstResultCard.getByRole('img', { name: 'category logo' });
+    this.cardTitle = this.firstResultCard.locator('h3.text-lg.font-semibold');
+    this.cardExpand = page.locator(".grid > div").first();
+    this.petaButton = page.getByRole('button', { name: 'Peta' });
+    
+    // Constants
+    this.expectedCardTitle = 'AJK Tanah Kubur Peradong';
+    this.expectedLocation = 'Kota Bharu, Kelantan';
+    this.pageTitle = 'Sedekah Je - Platform Sedekah QR Malaysia';
+  }
 
- const filterResultText = page.getByText('Jumlah Hasil Tapisan');
- await expect(filterResultText).toBeVisible();
-}
+  /**
+   * Verifies the Lain-lain button is visible and clicks it
+   */
+  async clickLainButton() {
+    await expect(this.lainButton).toBeVisible();
+    await this.lainButton.click();
+    await expect(this.filterResultText).toBeVisible();
+  }
 
-export async function VerifyLainCard_Result(page){
- const resultCard_Lain = page.locator('div.rounded-lg.bg-card').first();
- await expect(resultCard_Lain).toBeVisible();
+  /**
+   * Verifies the Lain card result is displayed with all expected elements
+   */
+  async verifyLainCardResult() {
+    // Verify card is visible
+    await expect(this.firstResultCard).toBeVisible();
 
- const cardLogo = resultCard_Lain.getByRole('img', { name: 'category logo' });
- await expect(cardLogo).toBeVisible();
+    // Verify card logo
+    await expect(this.cardLogo).toBeVisible();
 
- const cardTitle = resultCard_Lain.locator('h3.text-lg.font-semibold');
- await expect(page.getByText('AJK Tanah Kubur Peradong')).toBeVisible();
+    // Verify card title
+    await expect(this.page.getByText(this.expectedCardTitle)).toBeVisible();
 
- await page.mouse.wheel(0, 1000);
+    // Scroll to see action buttons
+    await this.page.mouse.wheel(0, 1000);
 
- const DownloadButton = resultCard_Lain.locator('button', { has: page.locator('svg.lucide-download') });
- await expect(DownloadButton).toBeVisible();
+    // Verify Download button
+    const downloadButton = this.firstResultCard.locator('button', { 
+      has: this.page.locator('svg.lucide-download') 
+    });
+    await expect(downloadButton).toBeVisible();
 
- const ShareButton = resultCard_Lain.locator('button', { has: page.locator('svg.lucide-share2') });
- await expect(ShareButton).toBeVisible();
-}
+    // Verify Share button
+    const shareButton = this.firstResultCard.locator('button', { 
+      has: this.page.locator('svg.lucide-share2') 
+    });
+    await expect(shareButton).toBeVisible();
+  }
 
-export async function LainCard_Expand(page) {
-  const resultCard_Lain = page.locator('div.rounded-lg.bg-card').first();
+  /**
+   * Expands the Lain card by clicking on the title
+   */
+  async expandLainCard() {
+    await expect(this.cardTitle).toHaveText(this.expectedCardTitle);
+    await this.cardTitle.click();
+  }
 
-  const cardTitle = resultCard_Lain.locator('h3.text-lg.font-semibold');
-  await expect(cardTitle).toHaveText('AJK Tanah Kubur Peradong'); 
+  /**
+   * Verifies the Peta button in the expanded card and clicks it
+   */
+  async verifyAndClickPetaButton() {
+    // Verify card title is visible
+    await expect(this.page.getByText(this.expectedCardTitle)).toBeVisible();
+    
+    // Click to expand card
+    await this.cardExpand.click();
+    
+    // Verify expanded card content
+    await expect(this.page.getByText(new RegExp(this.expectedCardTitle, 'i'))).toBeVisible();
+    await expect(this.page.getByText(new RegExp(this.expectedLocation, 'i'))).toBeVisible();
+    
+    // Click card again (if needed for your app's behavior)
+    await this.firstResultCard.click();
 
-  await cardTitle.click();
-}
+    // Verify full card text
+    const expectedFullText = `${this.expectedCardTitle}${this.expectedLocation}Kongsi`;
+    await expect(this.firstResultCard).toHaveText(expectedFullText);
 
-export async function VerifyCardLain_PetaButton(page){
-  const resultCard_Surau = page.locator('div.rounded-lg.bg-card').first();
-  //const cardTitle = resultCard_Surau.locator('h3.text-lg.font-semibold');
-  const CardExpand= page.locator(".grid > div").first()
-  
-  await expect(page.getByText('AJK Tanah Kubur Peradong')).toBeVisible();
-  // Target the outermost div with all card styling
-  await CardExpand.click(page);
-  await expect(page.getByText(/AJK Tanah Kubur Peradong/i)).toBeVisible();
-  await expect(page.getByText(/Kota Bharu, Kelantan/i)).toBeVisible();
-  await resultCard_Surau.click();
+    // Verify and click Peta button
+    await expect(this.petaButton).toBeVisible();
+    await this.petaButton.click();
+  }
 
-  await expect(resultCard_Surau).toHaveText('AJK Tanah Kubur PeradongKota Bharu, KelantanKongsi')
+  /**
+   * Complete flow: Click Lain button and verify card result
+   */
+  async navigateToLainSection() {
+    await this.clickLainButton();
+    await this.verifyLainCardResult();
+  }
 
-  const PetaButton = page.getByRole('button',{name:'Peta'});
-  await expect(PetaButton).toBeVisible();
-  await PetaButton.click();
+  /**
+   * Complete flow: Navigate to Lain section and expand card
+   */
+  async navigateAndExpandCard() {
+    await this.clickLainButton();
+    await this.verifyLainCardResult();
+    await this.expandLainCard();
+  }
+
+  /**
+   * Complete flow: Navigate, expand, and interact with Peta button
+   */
+  async navigateAndVerifyPeta() {
+    await this.clickLainButton();
+    await this.verifyLainCardResult();
+    await this.verifyAndClickPetaButton();
+  }
 }
