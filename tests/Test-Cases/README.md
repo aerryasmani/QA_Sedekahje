@@ -14,10 +14,10 @@ This directory contains all test case documentation for the Sedekah.je platform.
 
 | Feature Area      | Test Cases                 | Status         | File                                           |
 | ----------------- | -------------------------- | -------------- | ---------------------------------------------- |
-| Homepage          | CF-002 to CF-007 (6 tests) | ✅ Active      | [homepage-tests.md](homepage-tests.md)         |
-| Surau Detail Page | CF-011 to CF-017 (7 tests) | ✅ Active      | [Surau-Detail-Tests.md](Surau-Detail-Tests.md) |
-| Lain Detail Page  | CF-018 to CF-024 (7 tests) | ✅ Active      | [lain-detail-tests.md](lain-detail-tests.md)   |
-| SedekahRawak      | CF-025 to CF-032 (8 tests) | ✅ Active      | _Documentation pending_                        |
+| Homepage          | CF-002 to CF-007 (6 tests) | Active         | [homepage-tests.md](homepage-tests.md)         |
+| Surau Detail Page | CF-011 to CF-017 (7 tests) | Active         | [Surau-Detail-Tests.md](Surau-Detail-Tests.md) |
+| Lain Detail Page  | CF-018 to CF-024 (7 tests) | Active         | [lain-detail-tests.md](lain-detail-tests.md)   |
+| SedekahRawak      | CF-025 to CF-032 (8 tests) | Active         | [sedekahrawak-tests.md](sedekahrawak-tests.md) |
 | **Total**         | **28 tests**               |                |                                                |
 
 ---
@@ -66,7 +66,7 @@ This directory contains all test case documentation for the Sedekah.je platform.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -122,7 +122,8 @@ Playwright_Sedekahje/
 │       ├── README.md                (This file)
 │       ├── homepage-tests.md
 │       ├── Surau-Detail-Tests.md
-│       └── lain-detail-tests.md     (Documentation pending)
+│       ├── lain-detail-tests.md
+│       └── sedekahrawak-tests.md
 ```
 
 ---
@@ -180,17 +181,17 @@ When adding new test cases, use this template:
 
 ## Related Documentation
 
-- [Homepage Tests](homepage-tests.md) - ✅ Available
-- [Surau Detail Tests](Surau-Detail-Tests.md) - ✅ Available
-- [Lain Detail Tests](lain-detail-tests.md) - 🚧 Pending
-- SedekahRawak Tests - 🚧 Pending
+- [Homepage Tests](homepage-tests.md) - Available
+- [Surau Detail Tests](Surau-Detail-Tests.md) - Available
+- [Lain Detail Tests](lain-detail-tests.md) - Available
+- [SedekahRawak Tests](sedekahrawak-tests.md) - Available
 - [Playwright Documentation](https://playwright.dev/)
 - [Project Repository](https://github.com/khrnchn/sedekah-je)
 
 ### Documentation Status
 
-- **Available**: Homepage and Surau Detail Page test documentation are complete
-- **Pending**: Lain Detail Page and SedekahRawak test documentation need to be created
+- **Available**: All test documentation is complete
+- Homepage, Surau Detail Page, Lain Detail Page, and SedekahRawak test documentation are available
 
 ---
 
@@ -205,6 +206,6 @@ When adding new test cases:
 
 ---
 
-## 📧 Contact
+## Contact
 
 For questions about test cases, please create an issue in the repository.
