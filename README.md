@@ -1,28 +1,33 @@
 # QA_Sedekahjer
 
-Automated testing suite for the Sedekahjer web application using the Page Object Model (POM) design pattern.
+Automated testing suite for the Sedekah.je web application using the Page Object Model (POM) design pattern.
 
 This repository contains end-to-end (E2E), regression, and core test suites built using JavaScript and Playwright.
 
 ## Project Structure
 
 ```
-tests/
+Playwright_Sedekahje/
 ├── helpers/                          # Page Object Model classes
 │   ├── homepage.js                   # HomePage class - main page functionality
 │   ├── LainCardDetail.js             # LainCardDetailPage class - Lain-lain section
 │   ├── SedekahRawak.js               # SedekahRawak class - randomizer functionality
 │   └── SurauCardDetail.js            # SurauCardDetailPage class - Surau section, footer, and Doa
 │
-├── specs/                            # Test specification files
-│   ├── homepage_spec.js              # Homepage tests
-│   ├── Lain_detailpage_spec.js       # Lain-lain detail page tests
-│   ├── SedekahRawak_spec.js          # Randomizer feature tests
-│   └── Surau_detailpage_spec.js      # Surau detail page tests
-│
-├── E2E/                              # End-to-End test cases (currently using only tests)
-├── Regression/                       # Regression test cases (coming soon)
-└── TestSuite/                        # Core functional test cases
+└── tests/
+    ├── TestSuite/                    # Test specification files
+    │   ├── homepage.spec.js          # Homepage tests
+    │   ├── Lain_detailpage.spec.js   # Lain-lain detail page tests
+    │   ├── SedekahRawak.spec.js      # Randomizer feature tests
+    │   └── Surau_detailpage.spec.js  # Surau detail page tests
+    │
+    ├── Test-Cases/                   # Test case documentation
+    │   ├── README.md                 # Test cases index
+    │   ├── homepage-tests.md
+    │   └── Surau-Detail-Tests.md
+    │
+    ├── E2E/                          # End-to-End test cases (currently using only tests)
+    └── Regression/                   # Regression test cases (coming soon)
 ```
 
 ## Page Object Model (POM) Architecture
@@ -98,10 +103,10 @@ npx playwright test
 ### Run a specific test file
 
 ```bash
-npx playwright test tests/specs/homepage_spec.js
-npx playwright test tests/specs/Surau_detailpage_spec.js
-npx playwright test tests/specs/Lain_detailpage_spec.js
-npx playwright test tests/specs/SedekahRawak_spec.js
+npx playwright test tests/TestSuite/homepage.spec.js
+npx playwright test tests/TestSuite/Surau_detailpage.spec.js
+npx playwright test tests/TestSuite/Lain_detailpage.spec.js
+npx playwright test tests/TestSuite/SedekahRawak.spec.js
 ```
 
 ### Run tests in UI mode
@@ -182,8 +187,9 @@ npx playwright show-report
 
 ### File Organization
 
-- Page objects in `helpers/` directory
-- Test specs in `specs/` directory
+- Page objects in `helpers/` directory (root level)
+- Test specs in `tests/TestSuite/` directory
+- Test documentation in `tests/Test-Cases/` directory
 - One page object per file
 - One test suite per file
 
@@ -219,10 +225,10 @@ test("Test description", async ({ page }) => {
 | Folder        | Purpose                        | Status  |
 | ------------- | ------------------------------ | ------- |
 | `helpers/`    | Page Object Model classes      | Active  |
-| `specs/`      | Test specification files       | Active  |
+| `TestSuite/`  | Test specification files       | Active  |
+| `Test-Cases/` | Test case documentation        | Active  |
 | `E2E/`        | Full user journey tests        | Active  |
 | `Regression/` | High-priority regression tests | Planned |
-| `TestSuite/`  | Core functional tests          | Active  |
 
 ## Contributing
 

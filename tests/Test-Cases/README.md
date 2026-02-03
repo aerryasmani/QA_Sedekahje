@@ -14,16 +14,17 @@ This directory contains all test case documentation for the Sedekah.je platform.
 
 | Feature Area      | Test Cases                 | Status         | File                                           |
 | ----------------- | -------------------------- | -------------- | ---------------------------------------------- |
-| Homepage          | CF-002 to CF-008 (7 tests) | ✅ Active      | [homepage-tests.md](homepage-tests.md)         |
-| Surau Detail Page | CF-011 to CF-017 (7 tests) | ✅ Active      | [surau-detail-tests.md](surau-detail-tests.md) |
-| Lain Detail Page  | CF-01 (1 test)             | 🚧 In Progress | [lain-detail-tests.md](lain-detail-tests.md)   |
-| **Total**         | **15 tests**               |                |                                                |
+| Homepage          | CF-002 to CF-007 (6 tests) | ✅ Active      | [homepage-tests.md](homepage-tests.md)         |
+| Surau Detail Page | CF-011 to CF-017 (7 tests) | ✅ Active      | [Surau-Detail-Tests.md](Surau-Detail-Tests.md) |
+| Lain Detail Page  | CF-018 to CF-024 (7 tests) | ✅ Active      | [lain-detail-tests.md](lain-detail-tests.md)   |
+| SedekahRawak      | CF-025 to CF-032 (8 tests) | ✅ Active      | _Documentation pending_                        |
+| **Total**         | **28 tests**               |                |                                                |
 
 ---
 
 ## Test Cases by Feature
 
-### Homepage Tests (7 test cases)
+### Homepage Tests (6 test cases)
 
 - **CF-002**: Title displays correctly on page load
 - **CF-003**: Logo displays correctly on page load
@@ -31,7 +32,6 @@ This directory contains all test case documentation for the Sedekah.je platform.
 - **CF-005**: Institution buttons display and function correctly
 - **CF-006**: Dropdown displays correctly on page load
 - **CF-007**: Searchbar displays correctly on page load
-- **CF-008**: Surau button displays and works correctly
 
 ### Surau Detail Page Tests (7 test cases)
 
@@ -43,9 +43,26 @@ This directory contains all test case documentation for the Sedekah.je platform.
 - **CF-016**: Footer Rujukan links are present
 - **CF-017**: Footer Project Komuniti links are present
 
-### Lain Detail Page Tests (1 test case)
+### Lain Detail Page Tests (7 test cases)
 
-- **CF-01**: Title displays correctly on page load
+- **CF-018**: Lain-lain button is present and visible
+- **CF-019**: Lain Detail Card is present and visible
+- **CF-020**: Peta button is present and visible in the detail page
+- **CF-021**: Verify Doa Section is present in Lain Detail Page
+- **CF-022**: Footer Social Media is present
+- **CF-023**: Footer Rujukan Link is present
+- **CF-024**: Footer Project Komuniti is present
+
+### SedekahRawak/Randomizer Tests (8 test cases)
+
+- **CF-025**: Verify the Sedekah Rawak Button is present and visible
+- **CF-026**: Verify the Randomizer button functionality
+- **CF-027**: Verify the Second Randomizer button functionality
+- **CF-028**: Verify GetDoa Sections are Present
+- **CF-029**: Verify Footer Sections are Present
+- **CF-030**: Verify Footer Social Media column are Present and visible
+- **CF-031**: Verify Footer Rujukan column are Present and visible
+- **CF-032**: Verify Footer Project Komuniti section is present
 
 ---
 
@@ -71,7 +88,10 @@ npm test
 npx playwright test --headed
 
 # Run specific test file
-npx playwright test homepage.spec.js
+npx playwright test tests/TestSuite/homepage.spec.js
+npx playwright test tests/TestSuite/Surau_detailpage.spec.js
+npx playwright test tests/TestSuite/Lain_detailpage.spec.js
+npx playwright test tests/TestSuite/SedekahRawak.spec.js
 ```
 
 ### View Test Reports
@@ -86,20 +106,23 @@ npx playwright show-report
 ## File Structure
 
 ```
-tests/
-├── TestSuite/
-│   ├── homepage.js              (Helper functions)
+Playwright_Sedekahje/
+├── helpers/                      (Page Object Model classes)
+│   ├── homepage.js               (Helper functions)
 │   ├── SurauCardDetail.js       (Helper functions)
 │   ├── LainCardDetail.js        (Helper functions)
-│   ├── homepage.spec.js         (Test specs)
-│   ├── Surau_detailpage.spec.js (Test specs)
-│   └── Lain_detailpage.spec.js  (Test specs)
-└── test-cases/
-    ├── README.md                (This file)
-    ├── homepage-tests.md
-    ├── surau-detail-tests.md
-    ├── lain-detail-tests.md
-    └── test-execution-guide.md
+│   └── SedekahRawak.js          (Helper functions)
+├── tests/
+│   ├── TestSuite/
+│   │   ├── homepage.spec.js         (Test specs)
+│   │   ├── Surau_detailpage.spec.js (Test specs)
+│   │   ├── Lain_detailpage.spec.js  (Test specs)
+│   │   └── SedekahRawak.spec.js     (Test specs)
+│   └── Test-Cases/
+│       ├── README.md                (This file)
+│       ├── homepage-tests.md
+│       ├── Surau-Detail-Tests.md
+│       └── lain-detail-tests.md     (Documentation pending)
 ```
 
 ---
@@ -157,9 +180,17 @@ When adding new test cases, use this template:
 
 ## Related Documentation
 
-- [Test Execution Guide](test-execution-guide.md)
+- [Homepage Tests](homepage-tests.md) - ✅ Available
+- [Surau Detail Tests](Surau-Detail-Tests.md) - ✅ Available
+- [Lain Detail Tests](lain-detail-tests.md) - 🚧 Pending
+- SedekahRawak Tests - 🚧 Pending
 - [Playwright Documentation](https://playwright.dev/)
 - [Project Repository](https://github.com/khrnchn/sedekah-je)
+
+### Documentation Status
+
+- **Available**: Homepage and Surau Detail Page test documentation are complete
+- **Pending**: Lain Detail Page and SedekahRawak test documentation need to be created
 
 ---
 
