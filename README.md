@@ -20,7 +20,7 @@ tests/
 │   ├── SedekahRawak_spec.js          # Randomizer feature tests
 │   └── Surau_detailpage_spec.js      # Surau detail page tests
 │
-├── E2E/                              # End-to-End test cases (coming soon)
+├── E2E/                              # End-to-End test cases (currently using only tests)
 ├── Regression/                       # Regression test cases (coming soon)
 └── TestSuite/                        # Core functional test cases
 ```
