@@ -8,26 +8,39 @@ This repository contains end-to-end (E2E), regression, and core test suites buil
 
 ```
 Playwright_Sedekahje/
+├── .github/
+│   └── workflows/                    # GitHub Actions CI/CD
+│       ├── playwright-push-pr.yml   # Playwright tests on push/PR to main or master
+│       └── playwright-scheduled.yml # Playwright tests on schedule + manual dispatch
+│
 ├── helpers/                          # Page Object Model classes
 │   ├── homepage.js                   # HomePage class - main page functionality
 │   ├── LainCardDetail.js             # LainCardDetailPage class - Lain-lain section
 │   ├── SedekahRawak.js               # SedekahRawak class - randomizer functionality
 │   └── SurauCardDetail.js            # SurauCardDetailPage class - Surau section, footer, and Doa
 │
-└── tests/
-    ├── TestSuite/                    # Test specification files
-    │   ├── homepage.spec.js          # Homepage tests
-    │   ├── Lain_detailpage.spec.js   # Lain-lain detail page tests
-    │   ├── SedekahRawak.spec.js      # Randomizer feature tests
-    │   └── Surau_detailpage.spec.js  # Surau detail page tests
-    │
-    ├── Test-Cases/                   # Test case documentation
-    │   ├── README.md                 # Test cases index
-    │   ├── homepage-tests.md
-    │   └── Surau-Detail-Tests.md
-    │
-    ├── E2E/                          # End-to-End test cases (currently using only tests)
-    └── Regression/                   # Regression test cases (coming soon)
+├── tests/
+│   ├── TestSuite/                    # Test specification files
+│   │   ├── homepage.spec.js          # Homepage tests
+│   │   ├── Lain_detailpage.spec.js   # Lain-lain detail page tests
+│   │   ├── SedekahRawak.spec.js      # Randomizer feature tests
+│   │   └── Surau_detailpage.spec.js  # Surau detail page tests
+│   │
+│   ├── Test-Cases/                   # Test case documentation
+│   │   ├── README.md                 # Test cases index
+│   │   ├── homepage-tests.md
+│   │   ├── lain-detail-tests.md
+│   │   ├── sedekahrawak-tests.md
+│   │   └── Surau-Detail-Tests.md
+│   │
+│   ├── E2E/                          # End-to-End test cases (currently using only tests)
+│   └── Regression/                   # Regression test cases (coming soon)
+│
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── playwright.config.js
+└── README.md
 ```
 
 ## Page Object Model (POM) Architecture

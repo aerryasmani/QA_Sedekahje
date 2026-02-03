@@ -107,23 +107,35 @@ npx playwright show-report
 
 ```
 Playwright_Sedekahje/
-├── helpers/                      (Page Object Model classes)
-│   ├── homepage.js               (Helper functions)
-│   ├── SurauCardDetail.js       (Helper functions)
-│   ├── LainCardDetail.js        (Helper functions)
-│   └── SedekahRawak.js          (Helper functions)
+├── .github/
+│   └── workflows/
+│       ├── playwright-push-pr.yml   # Tests on push/PR (main, master)
+│       └── playwright-scheduled.yml # Tests on schedule + manual run
+│
+├── helpers/                          # Page Object Model classes
+│   ├── homepage.js
+│   ├── LainCardDetail.js
+│   ├── SedekahRawak.js
+│   └── SurauCardDetail.js
+│
 ├── tests/
 │   ├── TestSuite/
-│   │   ├── homepage.spec.js         (Test specs)
-│   │   ├── Surau_detailpage.spec.js (Test specs)
-│   │   ├── Lain_detailpage.spec.js  (Test specs)
-│   │   └── SedekahRawak.spec.js     (Test specs)
+│   │   ├── homepage.spec.js
+│   │   ├── Lain_detailpage.spec.js
+│   │   ├── SedekahRawak.spec.js
+│   │   └── Surau_detailpage.spec.js
 │   └── Test-Cases/
-│       ├── README.md                (This file)
+│       ├── README.md                 # This file
 │       ├── homepage-tests.md
-│       ├── Surau-Detail-Tests.md
 │       ├── lain-detail-tests.md
-│       └── sedekahrawak-tests.md
+│       ├── sedekahrawak-tests.md
+│       └── Surau-Detail-Tests.md
+│
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── playwright.config.js
+└── README.md
 ```
 
 ---
