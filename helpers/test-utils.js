@@ -56,6 +56,17 @@ export async function clearBrowserData(page) {
       localStorage.removeItem(key);
       sessionStorage.removeItem(key);
     });
+    
+    // Clear cookies by setting expiration to past date
+    if (document.cookie) {
+      // Fix: Split cookies by semicolon (;) not double quote (")
+      const cookies = document.cookie.split(';');
+      cookies.forEach(cookie => {
+        const cookieName = cookie.trim().split('=')[0];
+        // Set expiration to past date to clear the cookie
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      });
+    });
   });
   
   // Clear cookies
