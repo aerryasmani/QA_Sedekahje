@@ -7,7 +7,7 @@ export class LainCardDetailPage {
     // Define all locators
     this.lainButton = page.getByRole('button', { name: 'Lain-lain' });
     this.filterResultText = page.getByText('Jumlah Hasil Tapisan');
-    this.firstResultCard = page.locator('div.rounded-lg.bg-card').first();
+    this.firstResultCard = page.locator('div.rounded-lg.bg-card').filter({ has: page.getByRole('img', { name: 'category logo' }) }).first();
     this.cardLogo = this.firstResultCard.getByRole('img', { name: 'category logo' });
     this.cardTitle = this.firstResultCard.locator('h3.text-lg.font-semibold');
     this.cardExpand = page.locator(".grid > div").first();

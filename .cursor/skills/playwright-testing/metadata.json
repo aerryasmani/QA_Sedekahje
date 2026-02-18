@@ -1,0 +1,18 @@
+{
+  "name": "playwright-testing",
+  "version": "1.0.0",
+  "description": "Run Playwright tests, debug failures, generate reports. Supports headed/headless modes, specific test execution, and trace viewing.",
+  "triggers": [
+    "playwright test",
+    "run tests",
+    "run playwright",
+    "debug test",
+    "e2e test",
+    "browser test",
+    "test suite"
+  ],
+  "dependencies": {
+    "required": ["@playwright/test", "node"],
+    "optional": []
+  }
+}

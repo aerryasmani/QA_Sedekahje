@@ -7,7 +7,7 @@ export class SurauCardDetailPage {
     // Define all locators
     this.surauButton = page.getByRole('button', { name: 'Surau' });
     this.filterResultText = page.getByText('Jumlah Hasil Tapisan');
-    this.resultCardSurau = page.locator('div.rounded-lg.bg-card').first();
+    this.resultCardSurau = page.locator('div.rounded-lg.bg-card').filter({ has: page.getByRole('img', { name: 'category logo' }) }).first();
     this.cardLogo = this.resultCardSurau.getByRole('img', { name: 'category logo' });
     this.downloadButton = this.resultCardSurau.locator('button', { has: page.locator('svg.lucide-download') });
     this.shareButton = this.resultCardSurau.locator('button', { has: page.locator('svg.lucide-share2') });

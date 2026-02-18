@@ -1,12 +1,25 @@
-import { test } from '@playwright/test';  
+import { test, expect } from '@playwright/test';  
 import { HomePage } from '../../helpers/homepage'; 
 
 const baseURL = 'https://sedekah.je/';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, browserName }) => {
   const homePage = new HomePage(page); 
-  await homePage.navigate();
-  await homePage.verifyAndCloseModal();
+  
+  // Add retry logic for Firefox network issues
+  try {
+    await homePage.navigate();
+    await homePage.verifyAndCloseModal();
+  } catch (error) {
+    if (browserName === 'firefox' && (error.message.includes('NS_ERROR_UNKNOWN_HOST') || error.message.includes('Network'))) {
+      console.log(`Firefox network issue detected, retrying navigation for ${browserName}...`);
+      await page.waitForTimeout(2000); // Wait 2 seconds before retry
+      await homePage.navigate();
+      await homePage.verifyAndCloseModal();
+    } else {
+      throw error;
+    }
+  }
 });
 
 test.setTimeout(300000);
