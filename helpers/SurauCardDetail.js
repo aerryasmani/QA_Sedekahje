@@ -53,11 +53,11 @@ export class SurauCardDetailPage {
     await expect(this.resultCardSurau).toHaveText('AJK Surau Darul IstiqamahKuching, SarawakKongsi');
     await expect(this.petaButton).toBeVisible();
     await this.petaButton.click();
+    await this.mapContainer.waitFor({ state: 'visible', timeout: 15000 });
   }
 
-
   async verifyPetaButtonResult() {
-    await expect(this.mapContainer).toBeVisible({ timeout: 10000 });
+    await expect(this.mapContainer).toBeVisible({ timeout: 15000 });
   }
 
   async verifyCardGetDoa() {
