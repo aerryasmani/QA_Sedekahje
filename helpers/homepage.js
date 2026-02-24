@@ -10,7 +10,7 @@ export class HomePage {
     this.modalCloseButton = page.getByRole('button', {name: 'Faham, Terima Kasih!'});
     this.logo = page.getByRole('img', { name: 'Masjid' }).first();
     this.toggleThemeButton = page.getByRole('button', {name: 'Toggle theme'});
-    this.searchbar = page.locator('input[type="search"][placeholder*="Cari masjid"]');
+    this.searchbar = page.locator('input[type="search"][placeholder*="Cari masjid"]').first();
     this.dropdownButton = page.getByRole('combobox');
     
     // Constants
