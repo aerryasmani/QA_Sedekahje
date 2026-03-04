@@ -31,7 +31,7 @@ export class SurauCardDetailPage {
   async verifyCardResult() {
     await expect(this.resultCardSurau).toBeVisible();
     await expect(this.cardLogo).toBeVisible();
-    await expect(this.page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
+    await expect(this.page.getByText('ADTEC JTM Kampus Miri Surau Al-KausarMiri')).toBeVisible();
     await this.page.mouse.wheel(0, 1000);
     await expect(this.downloadButton).toBeVisible();
     await expect(this.shareButton).toBeVisible();
@@ -39,18 +39,18 @@ export class SurauCardDetailPage {
 
   async surauCardExpand() {
     const cardTitle = this.resultCardSurau.locator('h3.text-lg.font-semibold');
-    await expect(this.page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
+    await expect(this.page.getByText('ADTEC JTM Kampus Miri Surau Al-KausarMiri')).toBeVisible();
     await cardTitle.click();
   }
 
   async verifyCardPetaButton() {
     const cardExpand = this.page.locator(".grid > div").first();
-    await expect(this.page.getByText('AJK Surau Darul Istiqamah')).toBeVisible();
+    await expect(this.page.getByText('ADTEC JTM Kampus Miri Surau Al-KausarMiri, SarawakKongsi')).toBeVisible();
     await cardExpand.click();
-    await expect(this.page.getByText(/AJK Surau Darul Istiqamah/i)).toBeVisible();
-    await expect(this.page.getByText(/Kuching, Sarawak/i)).toBeVisible();
+    await expect(this.page.getByText(/ADTEC JTM Kampus Miri Surau Al-KausarMiri, SarawakKongsi/i)).toBeVisible();
+    await expect(this.page.getByText(/Miri, Sarawak/i)).toBeVisible();
     await this.resultCardSurau.click();
-    await expect(this.resultCardSurau).toHaveText('AJK Surau Darul IstiqamahKuching, SarawakKongsi');
+    await expect(this.resultCardSurau).toHaveText('ADTEC JTM Kampus Miri Surau Al-KausarMiri, SarawakKongsi');
     await expect(this.petaButton).toBeVisible();
     await this.petaButton.click();
     await this.mapContainer.waitFor({ state: 'visible', timeout: 15000 });
