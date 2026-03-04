@@ -185,6 +185,13 @@ npx playwright show-report
 - GetDoa section verification
 - Footer sections verification
 
+### Festive_Ramadhan Tests (RTC-01 to RTC-04)
+
+- Ramadan banner visibility during Ramadhan month
+- Banner countdown timer
+- View QR button in banner
+- X share button visibility and functionality
+
 ## Key Features
 
 - **Page Object Model**: Centralized locators and methods for better maintainability
