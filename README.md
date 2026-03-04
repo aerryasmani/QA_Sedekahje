@@ -16,6 +16,7 @@ Playwright_Sedekahje/
 ├── helpers/                          # Page Object Model classes
 │   ├── homepage.js                   # HomePage class - main page functionality
 │   ├── LainCardDetail.js             # LainCardDetailPage class - Lain-lain section
+│   ├── ramadanbanner.js              # Ramadan banner verification helpers
 │   ├── SedekahRawak.js               # SedekahRawak class - randomizer functionality
 │   └── SurauCardDetail.js            # SurauCardDetailPage class - Surau section, footer, and Doa
 │
@@ -23,11 +24,13 @@ Playwright_Sedekahje/
 │   ├── TestSuite/                    # Test specification files
 │   │   ├── homepage.spec.js          # Homepage tests
 │   │   ├── Lain_detailpage.spec.js   # Lain-lain detail page tests
+│   │   ├── ramadanbanner.spec.js     # Festive Ramadhan banner tests
 │   │   ├── SedekahRawak.spec.js      # Randomizer feature tests
 │   │   └── Surau_detailpage.spec.js  # Surau detail page tests
 │   │
 │   ├── Test-Cases/                   # Test case documentation
 │   │   ├── README.md                 # Test cases index
+│   │   ├── Festive_Ramadhan.md
 │   │   ├── homepage-tests.md
 │   │   ├── lain-detail-tests.md
 │   │   ├── sedekahrawak-tests.md
@@ -120,6 +123,7 @@ npx playwright test tests/TestSuite/homepage.spec.js
 npx playwright test tests/TestSuite/Surau_detailpage.spec.js
 npx playwright test tests/TestSuite/Lain_detailpage.spec.js
 npx playwright test tests/TestSuite/SedekahRawak.spec.js
+npx playwright test tests/TestSuite/ramadanbanner.spec.js
 ```
 
 ### Run tests in UI mode
