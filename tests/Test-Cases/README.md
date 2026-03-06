@@ -12,14 +12,14 @@ This directory contains all test case documentation for the Sedekah.je platform.
 
 ## Test Coverage Summary
 
-| Feature Area      | Test Cases                 | Status         | File                                           |
-| ----------------- | -------------------------- | -------------- | ---------------------------------------------- |
-| Homepage          | CF-002 to CF-007 (6 tests) | Active         | [homepage-tests.md](homepage-tests.md)         |
-| Surau Detail Page | CF-011 to CF-017 (7 tests) | Active         | [Surau-Detail-Tests.md](Surau-Detail-Tests.md) |
-| Lain Detail Page  | CF-018 to CF-024 (7 tests) | Active         | [lain-detail-tests.md](lain-detail-tests.md)   |
-| SedekahRawak      | CF-025 to CF-032 (8 tests) | Active         | [sedekahrawak-tests.md](sedekahrawak-tests.md) |
-| Festive_Ramadhan  | RTC-01 to RTC-04 (4 tests) | Active         | [Festive_Ramadhan.md](Festive_Ramadhan.md)     |
-| **Total**         | **32 tests**               |                |                                                |
+| Feature Area      | Test Cases                 | Status | File                                           |
+| ----------------- | -------------------------- | ------ | ---------------------------------------------- |
+| Homepage          | CF-002 to CF-007 (6 tests) | Active | [homepage-tests.md](homepage-tests.md)         |
+| Surau Detail Page | CF-011 to CF-017 (7 tests) | Active | [Surau-Detail-Tests.md](Surau-Detail-Tests.md) |
+| Lain Detail Page  | CF-018 to CF-024 (7 tests) | Active | [lain-detail-tests.md](lain-detail-tests.md)   |
+| SedekahRawak      | CF-025 to CF-032 (8 tests) | Active | [sedekahrawak-tests.md](sedekahrawak-tests.md) |
+| Festive_Ramadhan  | RTC-01 to RTC-04 (4 tests) | Active | [Festive_Ramadhan.md](Festive_Ramadhan.md)     |
+| **Total**         | **32 tests**               |        |                                                |
 
 ---
 
@@ -86,6 +86,8 @@ npm install
 npx playwright install
 ```
 
+> **Optional:** Install Allure CLI globally (`npm install -g allure-commandline`) to generate detailed reports.
+
 ### Run All Tests
 
 ```bash
@@ -110,6 +112,13 @@ npx playwright test tests/TestSuite/ramadanbanner.spec.js
 npx playwright show-report
 ```
 
+### Allure Reports
+
+```bash
+npx allure generate ./allure-results --clean -o ./allure-report
+npx allure open ./allure-report
+```
+
 ---
 
 ## File Structure
@@ -121,10 +130,11 @@ Playwright_Sedekahje/
 │       ├── playwright-push-pr.yml   # Tests on push/PR (main, master)
 │       └── playwright-scheduled.yml # Tests on schedule + manual run
 │
-├── helpers/                          # Page Object Model classes
+├── helpers/                          # Page Object Model classes & utilities
 │   ├── homepage.js
 │   ├── LainCardDetail.js
 │   ├── SedekahRawak.js
+│   ├── test-utils.js                # shared setup and cache helpers
 │   └── SurauCardDetail.js
 │
 ├── tests/

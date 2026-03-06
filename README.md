@@ -13,11 +13,12 @@ Playwright_Sedekahje/
 │       ├── playwright-push-pr.yml   # Playwright tests on push/PR to main or master
 │       └── playwright-scheduled.yml # Playwright tests on schedule + manual dispatch
 │
-├── helpers/                          # Page Object Model classes
+├── helpers/                          # Page Object Model classes & utilities
 │   ├── homepage.js                   # HomePage class - main page functionality
 │   ├── LainCardDetail.js             # LainCardDetailPage class - Lain-lain section
 │   ├── ramadanbanner.js              # Ramadan banner verification helpers
 │   ├── SedekahRawak.js               # SedekahRawak class - randomizer functionality
+│   ├── test-utils.js                 # Shared utilities (cache clearing, setup helpers)
 │   └── SurauCardDetail.js            # SurauCardDetailPage class - Surau section, footer, and Doa
 │
 ├── tests/
@@ -85,6 +86,15 @@ This project follows the Page Object Model design pattern for better maintainabi
   - Rujukan (reference) links
   - Projek Komuniti links
 
+### Utility Helpers
+
+A few shared utilities simplify test setup and maintenance:
+
+- **test-utils.js**: Provides standardized `setupTestSession` helper that clears browser cache/storage, handles flaky Firefox network errors, and navigates to the base URL.
+- Cache-clearing helpers enable clean state between tests and explicit data removal when needed.
+
+Tests may import and use these helpers in `beforeEach` hooks instead of writing the same logic repeatedly.
+
 ### Test Specifications
 
 All test files use the POM classes and follow a consistent structure:
@@ -99,7 +109,8 @@ Before running tests locally, ensure you have:
 
 - Node.js v18 or above
 - npm (comes with Node.js)
-- Playwright installed
+- Playwright installed (`npx playwright install`)
+- **Optional but recommended:** Allure Commandline if you plan to view advanced reports (`npm install -g allure-commandline` or see [Allure docs](https://docs.qameta.io/allure/)).
 
 ## Installation
 
@@ -131,6 +142,19 @@ npx playwright test tests/TestSuite/ramadanbanner.spec.js
 ```bash
 npx playwright test --ui
 ```
+
+### Generate and view Allure reports
+
+By default the project is configured with the `allure-playwright` reporter, which outputs results to `./allure-results`.
+
+After executing a test run you can generate a report with:
+
+```bash
+npx allure generate ./allure-results --clean -o ./allure-report
+npx allure open ./allure-report
+```
+
+Alternatively install the Allure CLI globally and run the same commands.
 
 ### Run tests in headed mode (see browser)
 
@@ -196,8 +220,12 @@ npx playwright show-report
 
 - **Page Object Model**: Centralized locators and methods for better maintainability
 - **Reusable Components**: Shared functionality (Footer, Doa) accessed via SurauCardDetailPage
+- **Utility Helpers**: `helpers/test-utils.js` offers standardized setup, cache clearing, and retry logic (firefox network workarounds)
 - **Test Steps**: Clear test reporting with `test.step()` for better debugging
 - **Consistent Structure**: All tests follow the same pattern and conventions
+- **Multi‑browser Config**: Supports chromium, firefox, and webkit projects with parallel runs
+- **Flexible Reporting**: HTML and Allure reporters enabled out‑of‑the‑box
+
 - **Comprehensive Coverage**: Tests cover main functionality and shared components
 
 ## Coding Standards
@@ -246,13 +274,13 @@ test("Test description", async ({ page }) => {
 
 ## Folder Purpose
 
-| Folder        | Purpose                        | Status  |
-| ------------- | ------------------------------ | ------- |
-| `helpers/`    | Page Object Model classes      | Active  |
-| `TestSuite/`  | Test specification files       | Active  |
-| `Test-Cases/` | Test case documentation        | Active  |
-| `E2E/`        | Full user journey tests        | Active  |
-| `Regression/` | High-priority regression tests | Planned |
+| Folder        | Purpose                                                         | Status  |
+| ------------- | --------------------------------------------------------------- | ------- |
+| `helpers/`    | Page Object Model classes & helpers (including `test-utils.js`) | Active  |
+| `TestSuite/`  | Test specification files                                        | Active  |
+| `Test-Cases/` | Test case documentation                                         | Active  |
+| `E2E/`        | Full user journey tests                                         | Active  |
+| `Regression/` | High-priority regression tests                                  | Planned |
 
 ## Contributing
 
