@@ -4,7 +4,7 @@
 
 This directory contains all test case documentation for the Sedekah.je platform. Test cases are organized by feature/page and stored as markdown files for easy version control and collaboration.
 
-**Last Updated**: December 2024  
+**Last Updated**: March 2026  
 **Test Framework**: Playwright  
 **Base URL**: https://sedekah.je/
 
@@ -18,8 +18,8 @@ This directory contains all test case documentation for the Sedekah.je platform.
 | Surau Detail Page | CF-011 to CF-017 (7 tests) | Active | [Surau-Detail-Tests.md](Surau-Detail-Tests.md) |
 | Lain Detail Page  | CF-018 to CF-024 (7 tests) | Active | [lain-detail-tests.md](lain-detail-tests.md)   |
 | SedekahRawak      | CF-025 to CF-032 (8 tests) | Active | [sedekahrawak-tests.md](sedekahrawak-tests.md) |
-| Festive_Ramadhan  | RTC-01 to RTC-04 (4 tests) | Active | [Festive_Ramadhan.md](Festive_Ramadhan.md)     |
-| **Total**         | **32 tests**               |        |                                                |
+| Dashboard Login   | CF-033 to CF-034 (2 tests) | Active | `tests/TestSuite/Dashboard/Login.spec.js`      |
+| **Total**         | **30 tests**               |        |                                                |
 
 ---
 
@@ -65,12 +65,10 @@ This directory contains all test case documentation for the Sedekah.je platform.
 - **CF-031**: Verify Footer Rujukan column are Present and visible
 - **CF-032**: Verify Footer Project Komuniti section is present
 
-### Festive_Ramadhan Tests (4 test cases)
+### Dashboard Login Tests (2 test cases)
 
-- **RTC-01**: Banner is visible during Ramadhan month
-- **RTC-02**: Banner countdown timer is visible
-- **RTC-03**: View QR button is present in the banner
-- **RTC-04**: The X share button is visible and functional
+- **CF-033**: Login button is present and visible
+- **CF-034**: Login button redirects to GitHub OAuth
 
 ---
 
@@ -102,7 +100,7 @@ npx playwright test tests/TestSuite/homepage.spec.js
 npx playwright test tests/TestSuite/Surau_detailpage.spec.js
 npx playwright test tests/TestSuite/Lain_detailpage.spec.js
 npx playwright test tests/TestSuite/SedekahRawak.spec.js
-npx playwright test tests/TestSuite/ramadanbanner.spec.js
+npx playwright test tests/TestSuite/Dashboard/Login.spec.js
 ```
 
 ### View Test Reports
@@ -137,21 +135,28 @@ Playwright_Sedekahje/
 │   ├── test-utils.js                # shared setup and cache helpers
 │   └── SurauCardDetail.js
 │
+├── playwright/
+│   └── .auth/
+│       ├── global-setup.js          # GitHub OAuth global setup
+│       └── user.json                # saved auth session (gitignored)
+│
 ├── tests/
 │   ├── TestSuite/
+│   │   ├── Dashboard/
+│   │   │   └── Login.spec.js        # CF-033, CF-034
 │   │   ├── homepage.spec.js
 │   │   ├── Lain_detailpage.spec.js
-│   │   ├── ramadanbanner.spec.js
 │   │   ├── SedekahRawak.spec.js
 │   │   └── Surau_detailpage.spec.js
 │   └── Test-Cases/
 │       ├── README.md                 # This file
-│       ├── Festive_Ramadhan.md
 │       ├── homepage-tests.md
 │       ├── lain-detail-tests.md
 │       ├── sedekahrawak-tests.md
 │       └── Surau-Detail-Tests.md
 │
+├── .env                              # local env vars (gitignored)
+├── .env.example                      # env var template
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
@@ -218,14 +223,13 @@ When adding new test cases, use this template:
 - [Surau Detail Tests](Surau-Detail-Tests.md) - Available
 - [Lain Detail Tests](lain-detail-tests.md) - Available
 - [SedekahRawak Tests](sedekahrawak-tests.md) - Available
-- [Festive_Ramadhan Tests](Festive_Ramadhan.md) - Available
 - [Playwright Documentation](https://playwright.dev/)
 - [Project Repository](https://github.com/khrnchn/sedekah-je)
 
 ### Documentation Status
 
 - **Available**: All test documentation is complete
-- Homepage, Surau Detail Page, Lain Detail Page, SedekahRawak, and Festive_Ramadhan test documentation are available
+- Homepage, Surau Detail Page, Lain Detail Page, SedekahRawak, and Dashboard Login test documentation are available
 
 ---
 

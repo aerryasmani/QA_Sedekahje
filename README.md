@@ -16,22 +16,26 @@ Playwright_Sedekahje/
 ├── helpers/                          # Page Object Model classes & utilities
 │   ├── homepage.js                   # HomePage class - main page functionality
 │   ├── LainCardDetail.js             # LainCardDetailPage class - Lain-lain section
-│   ├── ramadanbanner.js              # Ramadan banner verification helpers
 │   ├── SedekahRawak.js               # SedekahRawak class - randomizer functionality
 │   ├── test-utils.js                 # Shared utilities (cache clearing, setup helpers)
 │   └── SurauCardDetail.js            # SurauCardDetailPage class - Surau section, footer, and Doa
 │
+├── playwright/
+│   └── .auth/
+│       ├── global-setup.js           # GitHub OAuth global setup (saves auth state)
+│       └── user.json                 # Saved auth session (gitignored)
+│
 ├── tests/
 │   ├── TestSuite/                    # Test specification files
+│   │   ├── Dashboard/
+│   │   │   └── Login.spec.js         # Dashboard login tests (CF-033, CF-034)
 │   │   ├── homepage.spec.js          # Homepage tests
 │   │   ├── Lain_detailpage.spec.js   # Lain-lain detail page tests
-│   │   ├── ramadanbanner.spec.js     # Festive Ramadhan banner tests
 │   │   ├── SedekahRawak.spec.js      # Randomizer feature tests
 │   │   └── Surau_detailpage.spec.js  # Surau detail page tests
 │   │
 │   ├── Test-Cases/                   # Test case documentation
 │   │   ├── README.md                 # Test cases index
-│   │   ├── Festive_Ramadhan.md
 │   │   ├── homepage-tests.md
 │   │   ├── lain-detail-tests.md
 │   │   ├── sedekahrawak-tests.md
@@ -40,6 +44,8 @@ Playwright_Sedekahje/
 │   ├── E2E/                          # End-to-End test cases (currently using only tests)
 │   └── Regression/                   # Regression test cases (coming soon)
 │
+├── .env                              # Local env vars (gitignored)
+├── .env.example                      # Env var template (safe to commit)
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
@@ -103,6 +109,21 @@ All test files use the POM classes and follow a consistent structure:
 2. **Test Steps**: Uses `test.step()` for clear test reporting
 3. **Page Objects**: Creates instances of page classes as needed
 
+### Authentication Setup
+
+The project uses a global setup file (`playwright/.auth/global-setup.js`) for GitHub OAuth authentication:
+
+- On first run, opens a headed browser so you can complete GitHub login manually
+- Saves the authenticated session to `playwright/.auth/user.json` (gitignored)
+- On subsequent runs, reuses the saved session — no re-login needed
+- `playwright.config.js` applies `storageState` conditionally, so unauthenticated tests run normally before auth is set up
+
+To generate the auth state for the first time:
+
+```bash
+npx playwright test
+```
+
 ## Prerequisites
 
 Before running tests locally, ensure you have:
@@ -134,7 +155,7 @@ npx playwright test tests/TestSuite/homepage.spec.js
 npx playwright test tests/TestSuite/Surau_detailpage.spec.js
 npx playwright test tests/TestSuite/Lain_detailpage.spec.js
 npx playwright test tests/TestSuite/SedekahRawak.spec.js
-npx playwright test tests/TestSuite/ramadanbanner.spec.js
+npx playwright test tests/TestSuite/Dashboard/Login.spec.js
 ```
 
 ### Run tests in UI mode
@@ -209,18 +230,17 @@ npx playwright show-report
 - GetDoa section verification
 - Footer sections verification
 
-### Festive_Ramadhan Tests (RTC-01 to RTC-04)
+### Dashboard Login Tests (CF-033 to CF-034)
 
-- Ramadan banner visibility during Ramadhan month
-- Banner countdown timer
-- View QR button in banner
-- X share button visibility and functionality
+- Login button presence and visibility
+- Login button redirects to GitHub OAuth
 
 ## Key Features
 
 - **Page Object Model**: Centralized locators and methods for better maintainability
 - **Reusable Components**: Shared functionality (Footer, Doa) accessed via SurauCardDetailPage
 - **Utility Helpers**: `helpers/test-utils.js` offers standardized setup, cache clearing, and retry logic (firefox network workarounds)
+- **Auth State Management**: GitHub OAuth session saved once via `global-setup.js` and reused across all test runs
 - **Test Steps**: Clear test reporting with `test.step()` for better debugging
 - **Consistent Structure**: All tests follow the same pattern and conventions
 - **Multi‑browser Config**: Supports chromium, firefox, and webkit projects with parallel runs
