@@ -1,4 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
+import { existsSync } from 'fs';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const AUTH_FILE = 'playwright/.auth/user.json';
 
 export default defineConfig({
   reporter: [
@@ -13,8 +18,11 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
 
+  globalSetup: './playwright/.auth/global-setup.js',
+
   use: {
     trace: 'on-first-retry',
+    ...(existsSync(AUTH_FILE) ? { storageState: AUTH_FILE } : {}),
   },
 
   projects: [
