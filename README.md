@@ -39,10 +39,11 @@ Playwright_Sedekahje/
 │   │   ├── homepage-tests.md
 │   │   ├── lain-detail-tests.md
 │   │   ├── sedekahrawak-tests.md
-│   │   └── Surau-Detail-Tests.md
+│   │   ├── Surau-Detail-Tests.md
+│   │   └── Festive_Ramadhan.md       # Ramadhan banner test cases (RTC-01 to RTC-04)
 │   │
-│   ├── E2E/                          # End-to-End test cases (currently using only tests)
-│   └── Regression/                   # Regression test cases (coming soon)
+│   ├── E2E/                          # End-to-End test cases (planned)
+│   └── Regression/                   # Regression test cases (planned)
 │
 ├── .env                              # Local env vars (gitignored)
 ├── .env.example                      # Env var template (safe to commit)
@@ -235,6 +236,15 @@ npx playwright show-report
 - Login button presence and visibility
 - Login button redirects to GitHub OAuth
 
+### Festive Ramadhan Tests (RTC-01 to RTC-04)
+
+- Ramadhan banner visibility and styling
+- Banner day indicator and mosque name
+- "Lihat QR" link presence and navigation
+- "Kongsi ke X" share button visibility
+
+> **Note:** Test case documentation is in `tests/Test-Cases/Festive_Ramadhan.md`. Spec and helper implementations (`tests/TestSuite/ramadanbanner.spec.js`, `helpers/ramadanbanner.js`) are pending.
+
 ## Key Features
 
 - **Page Object Model**: Centralized locators and methods for better maintainability
@@ -287,10 +297,10 @@ test("Test description", async ({ page }) => {
 
 - E2E test suite for complete user journeys
 - Regression test suite for critical bug fixes
+- Festive Ramadhan spec implementation (`ramadanbanner.spec.js` and `helpers/ramadanbanner.js`)
 - API testing integration
 - Performance testing
 - Visual regression testing
-- CI/CD pipeline integration
 
 ## Folder Purpose
 
@@ -299,7 +309,7 @@ test("Test description", async ({ page }) => {
 | `helpers/`    | Page Object Model classes & helpers (including `test-utils.js`) | Active  |
 | `TestSuite/`  | Test specification files                                        | Active  |
 | `Test-Cases/` | Test case documentation                                         | Active  |
-| `E2E/`        | Full user journey tests                                         | Active  |
+| `E2E/`        | Full user journey tests                                         | Planned |
 | `Regression/` | High-priority regression tests                                  | Planned |
 
 ## Contributing
